@@ -1,1 +1,90 @@
-<p>add-room works!</p>
+<div class="col-md-4 offset-md-4 mt-5">
+  <h4>Add Room Form :</h4>
+  <div class="card card-body">
+    <div class="alert alert-danger" *ngIf="error">{{error}}</div>
+    <form #addRoomForm='ngForm' (ngSubmit)='addRoom(addRoomForm)'>
+      <div class="form-group">
+        <label for="hotelName">Hotel Name :</label>
+        <input type="text" name="hotelName" id="hotelName" #hotelName='ngModel' ngModel
+          placeholder="Enter Hotel name " class="form-control" required minlength="4">
+          <div *ngIf='hotelName.touched && hotelName.invalid'>
+            <p class="alert alert-danger" *ngIf='hotelName.errors.required'>
+                This feild is mandatory
+            </p>
+            <p class="alert alert-danger" *ngIf='hotelName.errors.minlength'>
+                Minimum 4 charachter required
+            </p>
+
+        </div>
+      
+        </div>
+      <div class="form-group">
+        <label for="licence">Licenece Number :</label>
+        <input type="text" name="licence" id="licence" #licence='ngModel' ngModel placeholder="Enter Licenece Number" licence
+          class="form-control" required>
+          <div *ngIf='licence.touched && licence.invalid'>
+            <p class="alert alert-danger" *ngIf='licence.errors.required'>
+                This feild is mandatory
+            </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="roomType">Room Type:</label>
+        <select name="roomType" class="form-control" #roomType="ngModel" ngModel required>
+          <option value="AC">AC</option>
+          <option value="Non AC">Non AC</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="capacity">capacity:</label>
+        <select name="capacity" class="form-control" #capacity="ngModel" ngModel required>
+          <option value="singleBed">Single Bed</option>
+          <option value="Double bed">Double Bed</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="amount">Amount:</label>
+        <input type="text" name="amount" id="amount" #amount='ngModel' ngModel placeholder="Room Amount"
+          class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <select name="status" class="form-control" #status="ngModel" ngModel required>
+          <option value="Available">Available</option>
+          <option value="Not Available">Not Available</option>
+        </select>
+      </div>
+
+      <!-- <button type="submit" class="btn btn-outline-primary  float-center">ADD</button> -->
+      <button type="submit" class="btn btn-outline-primary" data-toggle="modal" data-target="#addProductModel">
+        Add
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addProductModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Hotel Added....
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

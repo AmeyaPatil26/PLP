@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HotelService } from '../hotel.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-room',
@@ -7,7 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddRoomComponent implements OnInit {
 
-  constructor() { }
+  error: string = null;
+  constructor(private auth: HotelService) { }
+
+  addRoom(addRoomForm: NgForm) {
+    console.log(addRoomForm.value);
+    this.auth.addNewRooms(addRoomForm.value).subscribe(response => {
+      console.log(response);
+    }, err => {
+      console.log(err);
+    });
+  }
+
 
   ngOnInit() {
   }

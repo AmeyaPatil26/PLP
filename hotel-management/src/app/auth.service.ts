@@ -18,7 +18,7 @@ export class AuthService {
   }
 
   register(users): Observable<any> {
-    return this.http.put(`${this.api}registerUser`, users);
+    return this.http.put(`${this.api}userRegister`, users);
   }
 
   getUser() {

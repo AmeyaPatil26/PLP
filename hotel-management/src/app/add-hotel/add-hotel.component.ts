@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HotelService } from '../hotel.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-hotel',
@@ -7,7 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddHotelComponent implements OnInit {
 
-  constructor() { }
+  error: string = null;
+  constructor(private hotelService: HotelService) { }
+
+  addNewHotel(addHotelForm: NgForm) {
+    console.log(addHotelForm.value);
+    this.hotelService.addHotel(addHotelForm.value).subscribe(response => {
+      console.log(response);
+    }, err => {
+      console.log(err);
+      console.log('not added');
+    });
+  }
 
   ngOnInit() {
   }

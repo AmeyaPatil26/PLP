@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { HotelService } from '../hotel.service';
 
 @Component({
   selector: 'app-room-list',
@@ -7,7 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomListComponent implements OnInit {
 
-  constructor() { }
+  rooms = [];
+  constructor(private hotelService: HotelService) {
+    this.hotelService.getRoomList().subscribe(data => {
+      console.log(data.roomList);
+      this.rooms = data.roomList;
+    }, err => {
+      console.log(err);
+    });
+   }
+
+   deleteRoom(room) {
+    this.hotelService.delRoom(room).subscribe(data => {
+      console.log(data);
+      this.rooms.splice(this.rooms.indexOf(this.deleteRoom), 1);
+    }, err => {
+      console.log(err);
+    });
+   }
+
+   updateRoom(room) {
+    this.hotelService.delRoom(room).subscribe(data => {
+      console.log(data);
+      this.rooms.splice(this.rooms.indexOf(this.deleteRoom), 1);
+    }, err => {
+      console.log(err);
+    });
+   }
 
   ngOnInit() {
   }

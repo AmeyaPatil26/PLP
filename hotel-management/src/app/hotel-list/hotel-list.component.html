@@ -1,11 +1,9 @@
 <div class="mt-5">
-    <div class="col-md-3 card card-body float-left " *ngFor='let product of products'>
-        <img [src]="product.img" height="100px" width="150px">
-        <!-- <p>{{product.productId}}</p> -->
-        <h3>{{product.productName}}</h3>
-        <h6>Price:{{product.price}}</h6>
-        <h6>Available:{{product.available}}</h6>
-        <p>{{products.price | currency: 'INR'}}</p>
-        <p>{{products.details}}</p>
+    <div class="col-md-3 card card-body float-left " *ngFor='let hotel of hotels'>
+        <img [src]="hotel.imgUrl" height="100px" width="150px">
+        <h3>{{hotel.hotelName}}</h3>
+        <p>Address: {{hotel.address}}</p>
+        <p>Contact No: {{hotel.contactNumber}}</p>
+        <button type="submit" class="btn btn-primary" (click)='deleteRoom(room)' data-toggle="modal" data-target="#addProductModel">Delete</button> 
     </div>
 </div>
