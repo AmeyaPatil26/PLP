@@ -32,17 +32,34 @@ export class HotelService {
     return this.http.get<any>(`${this.api}getRoomList`);
   }
 
+  getEmployeeList() {
+    return this.http.get<any>(`${this.api}getEmployeeList`);
+  }
   delRoom(room): Observable<any> {
- return this.http.delete<any>(`${this.api}deleteRoom?roomId=${room.roomId}`, room);
+    return this.http.delete<any>(`${this.api}deleteRoom?roomId=${room.roomId}`, room);
   }
 
+  delHotel(hotel): Observable<any> {
+    return this.http.delete<any>(`${this.api}deleteHotel?hotelId=${hotel.hotelId}`, hotel);
+  }
+
+  delEmployee(hotel): Observable<any> {
+    return this.http.delete<any>(`${this.api}deleteEmployee?employeeId=${hotel.employeeId}`, hotel);
+  }
   addHotel(credentials): Observable<any> {
-   return this.http.post(`${this.api}addHotel`, credentials);
+    return this.http.post<any>(`${this.api}addHotel`, credentials);
+  }
+  addNewRooms(credentials): Observable<any> {
+    return this.http.put<any>(`${this.api}addRoomInformation`, credentials);
   }
 
-  addNewRooms(credentials): Observable<any> {
-    return this.http.put(`${this.api}addRoomInformation`, credentials);
-   }
+  addEmployee(credentials): Observable<any> {
+    return this.http.put<any>(`${this.api}addEmployee`, credentials);
+  }
+
+  updateEmployeeInfo(credentials) {
+    return this.http.put<any>(`${this.api}updateEmployeeInformation`, credentials);
+  }
   // Product operations by admin
   // isProductAdded() {
   //   const user = JSON.parse(localStorage.getItem('user'));

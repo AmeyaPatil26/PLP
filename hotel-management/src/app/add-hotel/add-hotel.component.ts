@@ -16,6 +16,8 @@ export class AddHotelComponent implements OnInit {
     console.log(addHotelForm.value);
     this.hotelService.addHotel(addHotelForm.value).subscribe(response => {
       console.log(response);
+      addHotelForm.reset();
+      this.error = response.description;
     }, err => {
       console.log(err);
       console.log('not added');

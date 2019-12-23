@@ -10,12 +10,15 @@ import { NgForm } from '@angular/forms';
 export class AddRoomComponent implements OnInit {
 
   error: string = null;
-  constructor(private auth: HotelService) { }
+  constructor(private hotelService: HotelService) { }
 
   addRoom(addRoomForm: NgForm) {
     console.log(addRoomForm.value);
-    this.auth.addNewRooms(addRoomForm.value).subscribe(response => {
+    console.log('---------------');
+    this.hotelService.addNewRooms(addRoomForm.value).subscribe(response => {
       console.log(response);
+      addRoomForm.reset();
+      this.error = response.description;
     }, err => {
       console.log(err);
     });

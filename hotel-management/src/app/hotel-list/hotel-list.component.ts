@@ -10,7 +10,6 @@ export class HotelListComponent implements OnInit {
 
   hotels = [];
   constructor(private hotelService: HotelService) {
-
     this.hotelService.getHotelList().subscribe(data => {
       console.log(data.hotelList);
       this.hotels = data.hotelList;
@@ -19,6 +18,15 @@ export class HotelListComponent implements OnInit {
     });
    }
 
+  deleteHotels(hotel) {
+    this.hotelService.delHotel(hotel).subscribe(data => {
+      console.log(data);
+      this.hotels.splice(this.hotels.indexOf(this.deleteHotels), 1);
+    }, err => {
+      console.log(err);
+    });
+   }
+   
   ngOnInit() {
   }
 

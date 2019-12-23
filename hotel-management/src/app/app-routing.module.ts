@@ -10,6 +10,7 @@ import { AddHotelComponent } from './add-hotel/add-hotel.component';
 import { AddRoomComponent } from './add-room/add-room.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { HotelListComponent } from './hotel-list/hotel-list.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'addHotel', component: AddHotelComponent},
   {path: 'addRoom', component: AddRoomComponent},
   {path: 'roomList', component: RoomListComponent},
-  {path: 'hotelList', component: HotelListComponent}
+  {path: 'hotelList', component: HotelListComponent},
+  {path: 'employeeList', component: EmployeeListComponent}
 
 ];
 //  canActivate: [AuthGuard], data: {role: ['admin']}

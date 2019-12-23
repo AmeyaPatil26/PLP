@@ -14,6 +14,8 @@ import { AddHotelComponent } from './add-hotel/add-hotel.component';
 import { AddRoomComponent } from './add-room/add-room.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { HotelListComponent } from './hotel-list/hotel-list.component';
+import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { HotelListComponent } from './hotel-list/hotel-list.component';
     AddHotelComponent,
     AddRoomComponent,
     RoomListComponent,
-    HotelListComponent
+    HotelListComponent,
+    UpdateEmployeeComponent,
+    EmployeeListComponent
   ],
   imports: [
     BrowserModule,
