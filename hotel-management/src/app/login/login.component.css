@@ -6,6 +6,13 @@ body {
 	padding: 0;
 	position: relative;
 }
+
+.back{
+    background-image: url("/assets/images/hand.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+}
 /* h1{ font-size:28px;}
 h2{ font-size:26px;}
 h3{ font-size:18px;}

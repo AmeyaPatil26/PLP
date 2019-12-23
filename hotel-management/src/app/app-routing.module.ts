@@ -18,11 +18,11 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'addEmployee', component: AddEmployeeComponent},
-  {path: 'addHotel', component: AddHotelComponent},
-  {path: 'addRoom', component: AddRoomComponent},
-  {path: 'roomList', component: RoomListComponent},
-  {path: 'hotelList', component: HotelListComponent},
-  {path: 'employeeList', component: EmployeeListComponent}
+  {path: 'addHotel', component: AddHotelComponent, canActivate: [AuthGuard], data: {role: ['admin']}},
+  {path: 'addRoom', component: AddRoomComponent, canActivate: [AuthGuard], data: {role: ['admin']}},
+  {path: 'roomList', component: RoomListComponent, canActivate: [AuthGuard], data: {role: ['admin']}},
+  {path: 'hotelList', component: HotelListComponent, canActivate: [AuthGuard], data: {role: ['admin']}},
+  {path: 'employeeList', component: EmployeeListComponent, canActivate: [AuthGuard], data: {role: ['admin']}}
 
 ];
 //  canActivate: [AuthGuard], data: {role: ['admin']}

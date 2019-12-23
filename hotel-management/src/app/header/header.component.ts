@@ -21,8 +21,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  isAdmin(): boolean {
+  isAdmin() {
     const adminDetails = JSON.parse(localStorage.getItem('key'));
+    console.log(adminDetails);
     if (adminDetails && adminDetails.type === 'admin') {
       console.log('Admin login');
       return true;

@@ -12,22 +12,22 @@
             <li class="nav-item">
                 <a class="nav-link" routerLink="/register">Register</a>
             </li> -->
-            <li class="nav-item-active" >
+            <li class="nav-item-active" *ngIf="isAdmin()">
                 <a class="nav-link" routerLink="/addEmployee">Add Employee</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isAdmin()">
                 <a class="nav-link" routerLink="/addHotel">Add Hotel</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isAdmin()">
                 <a class="nav-link" routerLink="/addRoom">Add Room</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isAdmin()">
                 <a class="nav-link" routerLink="/roomList">Room List</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isAdmin()" >
                 <a class="nav-link" routerLink="/hotelList">Hotel List</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isAdmin()">
                 <a class="nav-link" routerLink="/employeeList">Employee List</a>
             </li>
         </ul>

@@ -1,164 +1,153 @@
 <div class="container mt-5">
-    <table class="table table-bordered table-hover">
-        <thead class="thead-dark">
-            <tr>
-                <th>Employee Id</th>
-                <th>Employee Name</th>
-                <th>Hotel Name</th>
-                <th>Hotel Licence</th>
-                <th>Email</th>
-                <th>Delete</th>
-                <th>Update</th>
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Employee Id</th>
+        <th>Employee Name</th>
+        <th>Hotel Name</th>
+        <th>Hotel Licence</th>
+        <th>Email</th>
+        <th>Delete</th>
+        <th>Update</th>
 
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor='let hotel of hotels'>
-                <td>{{hotel.employeeId}}</td>
-                <td>{{hotel.name}}</td>
-                <td>{{hotel.hotelName}}</td>
-                <td>{{hotel.hotelLicense}}</td>
-                <td>{{hotel.email}}</td>
-                <!-- <td><button type="submit" class="btn btn-primary" (click)='deleteEmployee(hotel)' data-toggle="modal" data-target="#addProductModel">Delete</button></td>  -->
-             <td><button type="submit" class="btn btn-primary" (click)='updateEmployee(hotel)' data-toggle="modal" data-target="#addProductModel">Update</button> </td>
-            </tr>
-        </tbody>
-    </table>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let hotel of hotels'>
+        <td>{{hotel.employeeId}}</td>
+        <td>{{hotel.name}}</td>
+        <td>{{hotel.hotelName}}</td>
+        <td>{{hotel.hotelLicense}}</td>
+        <td>{{hotel.email}}</td>
+        <td><button type="submit" class="btn btn-primary" (click)='deleteEmployee(hotel)' data-toggle="modal"
+            data-target="#addProductModel">Delete</button></td>
+        <td><button type="submit" class="btn btn-primary" (click)='updateEmployee(hotel)' data-toggle="modal"
+            data-target="#editEmployeeModel">Update</button> </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-<div class="modal fade" id="addProductModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="back">
-            <!-- <h1>{{error}}</h1> -->
-            <div class="col-md-4 offset-md-4">
-            <!-- <h4 align="center">Login Form :</h4> -->
-            <div class="container mt-5">
-                <h4>Add Employee</h4>
-                <!-- <section id="content"> -->
-                    <div class="card card-body ">
-                       
-                        <form #addEmployeeForm='ngForm' (ngSubmit)='addNewEmployee(addEmployeeForm)'>
-                            <div class="form-group">
-                                <label for="hotelName">Hotel Name:</label>
-                                <input type="text" name="hotelName" id="hotelName" #hotelName='ngModel' ngModel
-                                    placeholder="Enter Hotel Name" class="form-control" required minlength="4" >
-                                <div *ngIf='hotelName.touched && hotelName.invalid'>
-                                    <p class="text-danger" *ngIf='hotelName.errors.required'>
-                                        This feild is mandatory
-                                    </p>
-                                    <p class="text-danger" *ngIf='hotelName.errors.minlength'>
-                                        Minimum 4 charachter required
-                                    </p>
-                                </div>
-                            </div>
-                          
-                            <div class="form-group">
-                                <label for="hotelLicense">Licence Number:</label>
-                                <input type="text" name="hotelLicense" id="hotelLicense" #hotelLicense='ngModel' ngModel
-                                    placeholder="Enter Licenece" class="form-control" required minlength="9" >
-                                <div *ngIf='hotelLicense.touched && hotelLicense.invalid'>
-                                    <p class="text-danger" *ngIf='licence.errors.required'>
-                                        This feild is mandatory
-                                    </p>
-                                    <p class="text-danger" *ngIf='licence.errors.minlength'>
-                                        Minimum 9 charachter required
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="name">UserName:</label>
-                                <input type="text" name="name" id="name" #name='ngModel' ngModel
-                                    placeholder="Enter Name" class="form-control" required minlength="4" >
-                                <div *ngIf='name.touched && name.invalid'>
-                                    <p class="text-danger" *ngIf='name.errors.required'>
-                                        This feild is mandatory
-                                    </p>
-                                    <p class="text-danger" *ngIf='name.errors.minlength'>
-                                        Minimum 4 charachter required
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email ID :</label>
-                                <input type="email" name="email" id="email" #email='ngModel' ngModel
-                                    placeholder="Enter Email Id" class="form-control" required minlength="6" email>
-                                <div *ngIf='email.touched && email.invalid'>
-                                    <p class="alert alert-danger" *ngIf='email.errors.required'>
-                                        This feild is mandatory
-                                    </p>
-                                    <p class="alert alert-danger" *ngIf='email.errors.minlength'>
-                                        Minimum 6 charachter required
-                                    </p>
-                                    <p class="alert alert-danger" *ngIf='email.errors.email'>
-                                        This feild only accept email
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" name="password" id="password" #password='ngModel' ngModel
-                                    placeholder="Enter Password" class="form-control" required minlength="6"  >
-                                    <!-- pattern="^(?=,*\)(?=.*[a-z])(?=.*[A-Z]).{4,10}$ -->
-                                <div *ngIf='password.touched && password.invalid'>
-                                    <p class="alert alert-danger" *ngIf='password.errors.required'>
-                                        This feild is mandatory
-                                    </p>
-                                    <p class="alert alert-danger" *ngIf='password.errors.minlength'>
-                                        required atleast 6 charachter
-                                    </p>
-                                    <p class="alert alert-danger" *ngIf='password.errors.password'>
-                                        This feild only accept password
-                                    </p>
-                                    <!-- <p class="alert alert-danger" *ngIf='password.errors.pattern'>
-                                        Password must contain 1 Upprcase, 1 lowercase and 1 digit
-                                    </p> -->
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-outline-primary  float-right" data-toggle="modal" data-target="#exampleModal"
-                                [disabled]='addEmployeeForm.invalid'>Add</button>
-                        </form>
-                    </div>
-                <!-- </section> -->
-            </div>
-            </div>
-        </div>
-        
-        
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="text-danger" *ngIf="error">
-                    <h4>{{error}}</h4>
-                </div>
-              </div>
-              <!-- <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div> -->
-            </div>
-          </div>
-        </div>
-          <!-- <div class="text-danger" *ngIf="error">
-              <h4>{{error}}</h4>
-          </div> -->
-        </div>
-       
+<div class="modal fade" id="addProductModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="modal-body">
+        <div class="text-danger" *ngIf="error">
+          <h4>{{error}}</h4>
+        </div>
+      </div>
+
     </div>
   </div>
+</div>
+
+<div class="modal fade" id="editEmployeeModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+        <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      <!-- </div> --> 
+      <div class="modal-body">
+        <div class="container mt-5">
+          <h4>Add Employee</h4>
+          <!-- <section id="content"> -->
+              <div class="card card-body ">
+                 
+                  <form #updateEmployeeForm='ngForm' (ngSubmit)='updateEmployee(updateEmployeeForm)'>
+                      <div class="form-group">
+                          <label for="hotelName">Hotel Name:</label>
+                          <input type="text" name="hotelName" id="hotelName" #hotelName='ngModel' ngModel
+                              placeholder="Enter Hotel Name" class="form-control" required minlength="4" >
+                          <div *ngIf='hotelName.touched && hotelName.invalid'>
+                              <p class="text-danger" *ngIf='hotelName.errors.required'>
+                                  This feild is mandatory
+                              </p>
+                              <p class="text-danger" *ngIf='hotelName.errors.minlength'>
+                                  Minimum 4 charachter required
+                              </p>
+                          </div>
+                      </div>
+                    
+                      <div class="form-group">
+                          <label for="hotelLicense">Licence Number:</label>
+                          <input type="text" name="hotelLicense" id="hotelLicense" #hotelLicense='ngModel' ngModel
+                              placeholder="Enter Licenece" class="form-control" required minlength="9" >
+                          <div *ngIf='hotelLicense.touched && hotelLicense.invalid'>
+                              <p class="text-danger" *ngIf='licence.errors.required'>
+                                  This feild is mandatory
+                              </p>
+                              <p class="text-danger" *ngIf='licence.errors.minlength'>
+                                  Minimum 9 charachter required
+                              </p>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="name">UserName:</label>
+                          <input type="text" name="name" id="name" #name='ngModel' ngModel
+                              placeholder="Enter Name" class="form-control" required minlength="4" >
+                          <div *ngIf='name.touched && name.invalid'>
+                              <p class="text-danger" *ngIf='name.errors.required'>
+                                  This feild is mandatory
+                              </p>
+                              <p class="text-danger" *ngIf='name.errors.minlength'>
+                                  Minimum 4 charachter required
+                              </p>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="email">Email ID :</label>
+                          <input type="email" name="email" id="email" #email='ngModel' ngModel
+                              placeholder="Enter Email Id" class="form-control" required minlength="6" email>
+                          <div *ngIf='email.touched && email.invalid'>
+                              <p class="alert alert-danger" *ngIf='email.errors.required'>
+                                  This feild is mandatory
+                              </p>
+                              <p class="alert alert-danger" *ngIf='email.errors.minlength'>
+                                  Minimum 6 charachter required
+                              </p>
+                              <p class="alert alert-danger" *ngIf='email.errors.email'>
+                                  This feild only accept email
+                              </p>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="password">Password</label>
+                          <input type="password" name="password" id="password" #password='ngModel' ngModel
+                              placeholder="Enter Password" class="form-control" required minlength="6"  >
+                              <!-- pattern="^(?=,*\)(?=.*[a-z])(?=.*[A-Z]).{4,10}$ -->
+                          <div *ngIf='password.touched && password.invalid'>
+                              <p class="alert alert-danger" *ngIf='password.errors.required'>
+                                  This feild is mandatory
+                              </p>
+                              <p class="alert alert-danger" *ngIf='password.errors.minlength'>
+                                  required atleast 6 charachter
+                              </p>
+                              <p class="alert alert-danger" *ngIf='password.errors.password'>
+                                  This feild only accept password
+                              </p>
+                              <!-- <p class="alert alert-danger" *ngIf='password.errors.pattern'>
+                                  Password must contain 1 Upprcase, 1 lowercase and 1 digit
+                              </p> -->
+                          </div>
+                      </div>
+                      <button type="submit" class="btn btn-outline-primary  float-right" data-toggle="modal" data-target="#exampleModal"
+                          [disabled]='addEmployeeForm.invalid'>Update</button>
+                  </form>
+              </div>
+          <!-- </section> -->
+      </div>
+      </div>
+     
+    </div>
+  </div>
+</div>
