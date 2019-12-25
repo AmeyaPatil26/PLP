@@ -1,0 +1,12 @@
+<div *ngFor='let r of roomList'>
+    <div class="card card-body float-left" style="height: 550px; width: 380px;">
+        <img src="{{r.roomImageURL}}" alt="" style="height: 200px; width: 200px;">
+        <label for="licenceNumber">Licence Number: {{r.licenceNumber}}</label>
+        <label for="hotelName">Name :{{r.hotelName}}</label>
+        <label for="roomCount">roomCount :{{r.roomCount}}</label>
+        <label for="roomType">roomType :{{r.roomType}}</label>
+        <label for="roomCapacity">roomCapacity :{{r.roomCapacity}}</label>
+        <label for="roomType">roomAmount :{{r.roomAmount}}</label>
+        <label for="roomType">roomStatus :{{r.roomStatus}}</label>
+    </div>
+</div>

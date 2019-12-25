@@ -1,31 +1,126 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { AuthGuard } from './auth.guard';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { AddEmployeeComponent } from './add-employee/add-employee.component';
-import { AddHotelComponent } from './add-hotel/add-hotel.component';
-import { AddRoomComponent } from './add-room/add-room.component';
-import { RoomListComponent } from './room-list/room-list.component';
-import { HotelListComponent } from './hotel-list/hotel-list.component';
-import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { AdminHotelListComponent } from './admin-hotel-list/admin-hotel-list.component';
+import { AuthGuard } from './auth.guard';
+import { UserHotelListComponent } from './user-hotel-list/user-hotel-list.component';
+import { VerticalHeaderComponent } from './vertical-header/vertical-header.component';
+import { EmployeeHotelInfoComponent } from './employee-hotel-info/employee-hotel-info.component';
+import { AdminAddHotelComponent } from './admin-add-hotel/admin-add-hotel.component';
+import { AdminAddRoomComponent } from './admin-add-room/admin-add-room.component';
+import { AdminRoomListComponent } from './admin-room-list/admin-room-list.component';
+import { AdminEmployeeListComponent } from './admin-employee-list/admin-employee-list.component';
+import { EmployeeRoomListComponent } from './employee-room-list/employee-room-list.component';
+import { EmployeeUserRoomBookingComponent } from './employee-user-room-booking/employee-user-room-booking.component';
+import { UserRoomListComponent } from './user-room-list/user-room-list.component';
+import { AdminAddEmployeeComponent } from './admin-add-employee/admin-add-employee.component';
 
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'addEmployee', component: AddEmployeeComponent},
-  {path: 'addHotel', component: AddHotelComponent, canActivate: [AuthGuard], data: {role: ['admin']}},
-  {path: 'addRoom', component: AddRoomComponent, canActivate: [AuthGuard], data: {role: ['admin']}},
-  {path: 'roomList', component: RoomListComponent, canActivate: [AuthGuard], data: {role: ['admin']}},
-  {path: 'hotelList', component: HotelListComponent, canActivate: [AuthGuard], data: {role: ['admin']}},
-  {path: 'employeeList', component: EmployeeListComponent, canActivate: [AuthGuard], data: {role: ['admin']}}
+
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  {
+    path: 'vertical-header',
+    component: VerticalHeaderComponent,
+    // canActivate: [AuthGuard],
+
+    children: [                          // <---- child components declared here
+      {
+        path: 'admin-profile',
+        component: AdminProfileComponent
+      },
+      {
+        path: 'admin-hotel-list',
+        component: AdminHotelListComponent,
+        canActivate: [AuthGuard], data: {
+          expectedRole: ['Admin']
+        }
+      },
+      {
+        path: 'admin-add-hotel',
+        component: AdminAddHotelComponent,
+        canActivate: [AuthGuard], data: {
+          expectedRole: ['Admin']
+        }
+      },
+      {
+        path: 'admin-room-list',
+        component: AdminRoomListComponent,
+        canActivate: [AuthGuard], data: {
+          expectedRole: ['Admin']
+        }
+      },
+      {
+        path: 'admin-add-room',
+        component: AdminAddRoomComponent,
+        canActivate: [AuthGuard], data: {
+          expectedRole: ['Admin']
+        }
+      },
+      {
+        path: 'admin-employee-list',
+        component: AdminEmployeeListComponent,
+        canActivate: [AuthGuard], data: {
+          expectedRole: ['Admin']
+        }
+      },
+      {
+        path: 'admin-add-employee',
+        component: AdminAddEmployeeComponent,
+        canActivate: [AuthGuard], data: {
+          expectedRole: ['Admin']
+        }
+      },
+      {
+        path: 'user-hotel-list',
+        component: UserHotelListComponent,
+        canActivate: [AuthGuard], data: {
+          expectedRole: ['User']
+        }
+      },
+      {
+        path: 'user-room-list',
+        component: UserRoomListComponent,
+        canActivate: [AuthGuard], data: {
+          expectedRole: ['User']
+        }
+      },
+      {
+        path: 'employee-hotel-info',
+        component: EmployeeHotelInfoComponent,
+        canActivate: [AuthGuard], data: {
+          expectedRole: ['Employee']
+        }
+      },
+      {
+        path: 'employee-room-list',
+        component: EmployeeRoomListComponent,
+        canActivate: [AuthGuard], data: {
+          expectedRole: ['Employee']
+        }
+      },
+      {
+        path: 'employee-user-booking',
+        component: EmployeeUserRoomBookingComponent,
+        canActivate: [AuthGuard], data: {
+          expectedRole: ['Employee']
+        }
+      },
+
+    ]
+
+  }
+  ,
+  { path: '**', component: PageNotFoundComponent }
 
 ];
-//  canActivate: [AuthGuard], data: {role: ['admin']}
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

@@ -1,0 +1,164 @@
+<div class="col-md-4 offset-md-4 mt-5 card card-body border border-dark">
+    <form #bookRoom='ngForm' (ngSubmit)='employeeBookRoom(bookRoom)'>
+        <div class="alert alert-danger" *ngIf='backendRespnse'>
+            {{backendRespnse.description}}
+        </div>
+        <div *ngIf="singleHotel">
+            <input type="hidden" name="licenceNumber" class="form-control" #licenceNumber="ngModel"
+                [(ngModel)]="singleHotel.hotelInformationBean.licenceNumber" required>
+           
+            <input type="hidden" name="hotelName" class="form-control" #hotelName="ngModel"
+                [(ngModel)]="singleHotel.hotelInformationBean.hotelName" required>
+        </div>
+        <div class="form-group">
+            <label for="bookingAmount">
+                bookingAmount:
+            </label>
+            <input type="number" name="bookingAmount" class="form-control" #bookingAmount="ngModel" ngModel required>
+            <div *ngIf='bookingAmount.touched && bookingAmount.invalid'>
+                <p class="alert alert-danger" *ngIf='bookingAmount.errors.required'>
+                    This field is mandatory
+                </p>
+
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="roomType">*Room Type:</label>
+            <select name="roomType" class="form-control" #roomType="ngModel" ngModel required>
+                <option value="AC">AC</option>
+                <option value="Non AC">Non AC</option>
+            </select>
+            <div *ngIf='roomType.touched && roomType.invalid'>
+                <p class="alert alert-danger" *ngIf='roomType.errors.required'>
+                    This field is mandatory
+                </p>
+
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="roomCapacity">capacity:</label>
+            <select name="roomCapacity" class="form-control" #roomCapacity="ngModel" ngModel required>
+                <option value="singleBed">Single Bed</option>
+                <option value="Double bed">Double Bed</option>
+            </select>
+            <div *ngIf='roomCapacity.touched && roomCapacity.invalid'>
+                <p class="alert alert-danger" *ngIf='roomCapacity.errors.required'>
+                    This field is mandatory
+                </p>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">
+                email:
+            </label>
+            <input type="email" name="email" class="form-control" #email="ngModel" ngModel required>
+            <div *ngIf='email.touched && email.invalid'>
+                <p class="alert alert-danger" *ngIf='email.errors.required'>
+                    This field is mandatory
+                </p>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="name">
+                name:
+            </label>
+            <input type="text" name="name" class="form-control" #name="ngModel" ngModel required>
+            <div *ngIf='name.touched && name.invalid'>
+                <p class="alert alert-danger" *ngIf='name.errors.required'>
+                    This field is mandatory
+                </p>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="address">
+                address:
+            </label>
+            <input type="text" name="address" class="form-control" #address="ngModel" ngModel required>
+            <div *ngIf='address.touched && address.invalid'>
+                <p class="alert alert-danger" *ngIf='address.errors.required'>
+                    This field is mandatory
+                </p>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="contactNumber">
+                contactNumber:
+            </label>
+            <input type="text" name="contactNumber" class="form-control" #contactNumber="ngModel" ngModel required>
+            <div *ngIf='contactNumber.touched && contactNumber.invalid'>
+                <p class="alert alert-danger" *ngIf='contactNumber.errors.required'>
+                    This field is mandatory
+                </p>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="nationality">
+                nationality:
+            </label>
+            <input type="text" name="nationality" class="form-control" #nationality="ngModel" ngModel required>
+            <div *ngIf='nationality.touched && nationality.invalid'>
+                <p class="alert alert-danger" *ngIf='nationality.errors.required'>
+                    This field is mandatory
+                </p>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="checkInDate">
+                checkInDate:
+            </label>
+            <input type="date" name="checkInDate" class="form-control" #checkInDate="ngModel" ngModel required>
+            <div *ngIf='checkInDate.touched && checkInDate.invalid'>
+                <p class="alert alert-danger" *ngIf='checkInDate.errors.required'>
+                    This field is mandatory
+                </p>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="checkOutDate">
+                checkOutDate:
+            </label>
+            <input type="date" name="checkOutDate" class="form-control" #checkOutDate="ngModel" ngModel required>
+            <div *ngIf='checkOutDate.touched && checkOutDate.invalid'>
+                <p class="alert alert-danger" *ngIf='checkOutDate.errors.required'>
+                    This field is mandatory
+                </p>
+
+            </div>
+        </div>
+
+
+        <div class="btn-group float-right">
+            <button class="btn btn-outline-dark" type="reset">
+                Reset
+            </button>
+            &nbsp;&nbsp;
+            <button class="btn btn-outline-dark" type="submit" >
+                Add
+            </button>
+        </div>
+
+      
+
+    </form>
+</div>

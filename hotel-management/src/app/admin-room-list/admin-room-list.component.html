@@ -1,0 +1,127 @@
+<div *ngFor='let r of roomList'>
+    <div class="card card-body float-left" style="height: 550px; width: 380px;">
+        <img src="{{r.roomImageURL}}" alt="" style="height: 200px; width: 200px;">
+        <label for="licenceNumber">Licence Number: {{r.licenceNumber}}</label>
+        <label for="hotelName">Name :{{r.hotelName}}</label>
+        <label for="roomCount">roomCount :{{r.roomCount}}</label>
+        <label for="roomType">roomType :{{r.roomType}}</label>
+        <label for="roomCapacity">roomCapacity :{{r.roomCapacity}}</label>
+        <label for="roomType">roomAmount :{{r.roomAmount}}</label>
+        <label for="roomType">roomStatus :{{r.roomStatus}}</label>
+        <button class="btn btn-outline-dark" (click)="deleteRoomInfo(r)">
+            Delete
+        </button>
+        <!-- start -->
+
+        <button type="submit" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal"
+            (click)="selectRoom(r)">
+            Update
+        </button>
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Hotel</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            (click)="hotelService.adminRoomList()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="card card-body border border-dark">
+                            <form #updateRoom='ngForm' (ngSubmit)='updateRoomInfo(updateRoom)'>
+                                <input type="hidden" name="roomId" #roomId='ngModel' [(ngModel)]='selectedRoom.roomId'>
+                                <input type="hidden" name="hotelId" #hotelId='ngModel'
+                                    [(ngModel)]='selectedRoom.hotelId'>
+
+                                <input type="hidden" name="hotelName" class="form-control" #hotelName="ngModel" ngModel
+                                    [(ngModel)]="selectedRoom.hotelName">
+
+
+                                <input type="hidden" name="licenceNumber" class="form-control" #licenceNumber="ngModel"
+                                    ngModel [(ngModel)]="selectedRoom.licenceNumber">
+
+
+
+                                <div class="form-group">
+                                    <label for="roomCount">
+                                        roomCount:
+                                    </label>
+                                    <input type="number" name="roomCount" class="form-control" #roomCount="ngModel"
+                                        ngModel [(ngModel)]="selectedRoom.roomCount">
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="roomType">
+                                        roomType:
+                                    </label>
+                                    <input type="text" name="roomType" class="form-control" #roomType="ngModel" ngModel
+                                        [(ngModel)]="selectedRoom.roomType">
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="roomCapacity">
+                                        roomCapacity:
+                                    </label>
+                                    <input type="text" name="roomCapacity" class="form-control" #roomCapacity="ngModel"
+                                        ngModel [(ngModel)]="selectedRoom.roomCapacity">
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="roomAmount">
+                                        roomAmount:
+                                    </label>
+                                    <input type="number" name="roomAmount" class="form-control" #roomAmount="ngModel"
+                                        ngModel [(ngModel)]="selectedRoom.roomAmount">
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="roomStatus">
+                                        roomStatus:
+                                    </label>
+                                    <input type="text" name="roomStatus" class="form-control" #roomStatus="ngModel"
+                                        ngModel [(ngModel)]="selectedRoom.roomStatus">
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="roomImageURL">
+                                        roomImageURL:
+                                    </label>
+                                    <input type="text" name="roomImageURL" class="form-control" #roomImageURL="ngModel"
+                                        ngModel [(ngModel)]="selectedRoom.roomImageURL">
+
+                                </div>
+
+
+                                <div class="btn-group float-right">
+                                    <button class="btn btn-outline-dark" type="reset">
+                                        Reset
+                                    </button>
+                                    &nbsp;&nbsp;
+                                    <button class="btn btn-outline-dark" type="submit" [disabled]='updateRoom.invalid'>
+                                        Update
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end  -->
+
+
+    </div>
+</div>

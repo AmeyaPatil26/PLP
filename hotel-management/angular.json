@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "hotel-managment": {
+    "online-medicalstore": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/hotel-managment",
+            "outputPath": "dist/online-medicalstore",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -25,7 +25,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.css" 
+              "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "hotel-managment:build"
+            "browserTarget": "online-medicalstore:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "hotel-managment:build:production"
+              "browserTarget": "online-medicalstore:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "hotel-managment:build"
+            "browserTarget": "online-medicalstore:build"
           }
         },
         "test": {
@@ -115,15 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "hotel-managment:serve"
+            "devServerTarget": "online-medicalstore:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "hotel-managment:serve:production"
+              "devServerTarget": "online-medicalstore:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "hotel-managment"
+  "defaultProject": "online-medicalstore"
 }

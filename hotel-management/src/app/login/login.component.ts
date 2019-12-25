@@ -2,43 +2,52 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  error: string = null;
-
+  error = null;
   constructor(private auth: AuthService, private router: Router) { }
 
-  login(form: NgForm) {
-    console.log(form.value);
-    this.error = null;
-    this.auth.login(form.value).subscribe(res => {
-      console.log(res);
-      // if (user && user.registered) {
-      //   localStorage.setItem('user', JSON.stringify(user));
-      // }
-      if (res && res.statusCode === 200) {
-        const user = JSON.stringify(res.adminEmployeeUserBean);
-        const abc = localStorage.setItem('key', JSON.stringify(user));
-        console.log('.............................', abc);
-        this.error = res.description;
-        this.router.navigateByUrl('/');
-        form.reset();
-      } else {
-        this.error = res.description;
-      }
-      // form.reset(form);
-    }, err => {
-      console.log(err);
-      this.error = err.error.message;
-    });
-  }
   ngOnInit() {
+  }
+
+  loginUser(loginForm: NgForm) {
+    console.log(loginForm.value);
+    this.error = null;
+    this.auth.login(loginForm.value).subscribe(
+      response => {
+        console.log('error message', response.description);
+        this.error = response.description;
+        console.log(response.statusCode);
+        console.log(response.adminEmployeeUserBean);
+        loginForm.reset();
+        if (response.statusCode === 200 && response.adminEmployeeUserBean.type === 'Admin') {
+          console.log('inside if');
+          const user = JSON.stringify(response);
+          localStorage.setItem('token', user);
+          this.router.navigateByUrl('/vertical-header');
+        } else if (response.statusCode === 200 && response.adminEmployeeUserBean.type === 'User') {
+          console.log('inside if');
+          const user = JSON.stringify(response);
+          localStorage.setItem('token', user);
+          this.router.navigateByUrl('/vertical-header');
+        } else if (response.statusCode === 200 && response.adminEmployeeUserBean.type === 'Employee') {
+          console.log('inside if');
+          const user = JSON.stringify(response);
+          localStorage.setItem('token', user);
+          this.router.navigateByUrl('/vertical-header');
+        }
+
+      },
+      err => {
+        console.log(err);
+        // this.error = err.error.error.message;
+        loginForm.reset();
+      }
+    );
   }
 
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -9,24 +8,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  error: string = null;
-  constructor(private auth: AuthService, private router: Router) { }
-
-  register(registerForm: NgForm) {
-    console.log(registerForm.value);
-    this.auth.register(registerForm.value).subscribe(response => {
-      console.log(response);
-      console.log(response.type);
-      registerForm.reset();
-      this.router.navigateByUrl('/hotelList');
-    }, err => {
-      console.log(err);
-    });
-  }
-
+  error = null;
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
   }
-
+  registerUser(registerForm: NgForm) {
+    this.error = null;
+    this.auth.register(registerForm.value).subscribe(
+      res => {
+        console.log(res);
+        this.error = res;
+        registerForm.reset();
+      },
+      err => {
+        console.log(err);
+       // this.error = err.error.error.message;
+      });
+  }
 }

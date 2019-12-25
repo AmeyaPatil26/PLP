@@ -1,0 +1,96 @@
+<p>hgdfjkjknfdjbn</p>
+
+<div class="col-md-4 offset-md-4 mt-5 card card-body border border-dark">
+  <form #addHotel='ngForm' (ngSubmit)='addNewHotel(addHotel)'>
+      <!--    -->
+      <div class="form-group">
+          <label for="licenceNumber">
+              licenceNumber:
+          </label>
+          <input type="text" name="licenceNumber" class="form-control" #licenceNumber="ngModel"
+          pattern="^(H)[0-9]{8}$" ngModel required>
+          <div *ngIf='licenceNumber.touched && licenceNumber.invalid'>
+              <p class="alert alert-danger" *ngIf='licenceNumber.errors.required'>
+                  This field is mandatory
+              </p>
+              <p class="alert alert-danger" *ngIf='licenceNumber.errors.pattern'>
+                  please enter valid licenceNumber
+              </p>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label for="hotelName">
+              hotelName:
+          </label>
+          <input type="text" name="hotelName" class="form-control" #hotelName="ngModel"
+             ngModel required>
+          <div *ngIf='hotelName.touched && hotelName.invalid'>
+              <p class="alert alert-danger" *ngIf='hotelName.errors.required'>
+                  This field is mandatory
+              </p>
+          
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label for="hotelAddress">
+              hotelAddress: 
+          </label>
+          <input type="text" name="hotelAddress" class="form-control" #hotelAddress="ngModel" ngModel
+            required>
+          <div *ngIf='hotelAddress.touched && hotelAddress.invalid'>
+              <p class="alert alert-danger" *ngIf='hotelAddress.errors.required'>
+                  This field is mandatory
+              </p>
+              
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label for="hotelContactNumber">
+              hotelContactNumber:
+          </label>
+          <input type="text" name="hotelContactNumber" class="form-control" #hotelContactNumber="ngModel" ngModel
+          pattern = "[7-9]{1}[0-9]{9}"   required>
+          <div *ngIf='hotelContactNumber.touched && hotelContactNumber.invalid'>
+              <p class="alert alert-danger" *ngIf='hotelContactNumber.errors.required'>
+                  This field is mandatory
+              </p>
+              <p class="alert alert-danger" *ngIf='hotelContactNumber.errors.pattern'>
+                  please enter valid hotelContactNumber
+              </p>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label for="hotelImageURL">
+              hotelImageURL:
+          </label>
+          <input type="text" name="hotelImageURL" class="form-control" #hotelImageURL="ngModel"
+         ngModel required>
+          <div *ngIf='hotelImageURL.touched && hotelImageURL.invalid'>
+              <p class="alert alert-danger" *ngIf='hotelImageURL.errors.required'>
+                  This field is mandatory
+              </p>
+           
+          </div>
+      </div>
+
+
+      <div class="btn-group float-right">
+          <button class="btn btn-outline-dark" type="reset">
+              Reset
+          </button>
+          &nbsp;&nbsp;
+          <button class="btn btn-outline-dark" type="submit" [disabled]='addHotel.invalid'>
+              Add
+          </button>
+      </div>
+
+      <div class="alert alert-danger" *ngIf='backendRespnse'>
+          {{backendRespnse.description}}
+      </div>
+
+  </form>
+</div>

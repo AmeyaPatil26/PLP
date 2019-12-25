@@ -1,27 +1,36 @@
-import { Injectable } from '@angular/core';
+import { Injectable, RootRenderer } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Injectable({
     providedIn: 'root'
 })
+
 export class AuthGuard implements CanActivate {
 
-    // userDetails = JSON.parse(localStorage.getItem('user'));
-    // constructor(private auth: AuthService) { }
+    userDetails = JSON.parse(localStorage.getItem('token'));
 
-    canActivate(next: ActivatedRouteSnapshot): boolean {
-        const userRoleArray = next.data.role;
-        const userDetails = JSON.parse(localStorage.getItem('key'));
-        console.log(localStorage.getItem('key'));
-        for (const user in userRoleArray) {
-            if (userDetails && userDetails.type === userRoleArray[user]) {
-                console.log('user loggedIn');
+    constructor(private auth: AuthService) { }
+    canActivate(route: ActivatedRouteSnapshot): boolean {
+        const expectedRoleArray = route.data.expectedRole;
+        let expectedRole;
+        for (const index in expectedRoleArray) {
+            if (this.userDetails && this.userDetails.type === expectedRoleArray[index]) {
+                expectedRole = expectedRoleArray[index];
                 return true;
             } else {
-                console.log('user not loggedin');
                 return false;
             }
         }
+        if (this.userDetails && this.userDetails.type === expectedRole) {
+            console.log('user loggedIn');
+            return true;
+        } else {
+            console.log(expectedRole);
+            console.log(this.userDetails.type);
+            console.log('user not loggedin');
+            return false;
+        }
     }
+
 }

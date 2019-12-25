@@ -1,77 +1,65 @@
-<div class="back">
-    <!-- <h1>{{error}}</h1> -->
-    <div class="col-md-4 offset-md-4 mt-5">
-        <!-- <h4 align="center">Login Form :</h4> -->
-        <h4>Login Here!!!</h4>
-        <div class="card card-body ">
-            <div class="alert alert-danger" *ngIf="error">{{error}}</div>
-            <form #loginForm='ngForm' (ngSubmit)='login(loginForm)'>
-                <div class="form-group">
-                    <label for="email">Email ID :</label>
-                    <input type="email" name="email" id="email" #email='ngModel' ngModel placeholder="Enter Email Id"
-                        class="form-control" required minlength="8" email
-                        >
-                    <div *ngIf='email.touched && email.invalid'>
-                        <p class="alert alert-danger" *ngIf='email.errors.required'>
-                            This feild is mandatory
-                        </p>
-                        <p class="alert alert-danger" *ngIf='email.errors.minlength'>
-                            Minimum 8 charachter required
-                        </p>
-                        <p class="alert alert-danger" *ngIf='email.errors.email'>
-                            This feild only accept email
-                        </p>
-                        <p class="alert alert-danger" *ngIf='email.errors.pattern'>
-                            This feild only accept email
-                        </p>
-
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" #password='ngModel' ngModel 
-                        placeholder="Enter Password" class="form-control" required minlength="6"
-                       >
-                       <!-- pattern="^(?=,*\)(?=.*[a-z])(?=.*[A-Z]).{4,10}$" -->
-                    <div *ngIf='password.touched && password.invalid'>
-                        <p class="alert alert-danger" *ngIf='password.errors.required'>
-                            This feild is mandatory
-                        </p>
-                        <p class="alert alert-danger" *ngIf='password.errors.minlength'>
-                            required atleast 6 charachter
-                        </p>
-                        <p class="alert alert-danger" *ngIf='password.errors.password'>
-                            This feild only accept password
-                        </p>
-                        <p class="alert alert-danger" *ngIf='password.errors.pattern'>
-                            Password must contain 1 Upprcase, 1 lowercase and 1 digit
-                        </p>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-success btn-lg btn-block float-right"
-                    [disabled]='loginForm.invalid'>Login</button>
-            </form>
-        </div>
+<div class="backImage">
+    <h5></h5>
+<div class="col-md-4 offset-md-4  card card-body border border-dark">
+    <div class="text-danger" *ngIf='error'>
+        {{error}}
     </div>
+     <h4>
+        Login Here!!!
+    </h4>
+    <hr>
+    <form #loginForm="ngForm" (ngSubmit)='loginUser(loginForm)'>
+        <div class="form-group">
+            <label for="Email ID">Email ID</label>
+            <input class="form-control" type="email" name="email" placeholder="Enter Your Email ID" #email='ngModel'
+                ngModel required email>
+            <div *ngIf='email.touched && email.invalid'>
+                <p class="text-danger" *ngIf='email.errors.required'>
+                    This field is mandatory
+                </p>
+                <p class="text-danger" *ngIf='email.errors.email'>
+                    please enter valid email id
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input class="form-control" type="password" name="password" placeholder="Enter Your password"
+                #password='ngModel' ngModel required password minlength="4">
+            <div *ngIf='password.touched && password.invalid'>
+                <p class="text-danger" *ngIf='password.errors.required'>
+                    This field is mandatory
+                </p>
+                <p class="text-danger" *ngIf='password.errors.minlength'>
+                    Minimnum 3 charachter is mandatory
+                </p>
+            </div>
+        </div>
+        <div class="float-right">
+
+            <button class=" btn btn-dark" type="submit"  name="login" [disabled]='loginForm.invalid'>
+                Login
+
+            </button>&nbsp;
+            <button class=" btn btn-dark" type="reset">
+                Cancel
+
+            </button>
+
+        </div>
+        <br>
+        <br>
+        <br>
+        <!-- <div class="custom-control custom-checkbox float-left">
+            <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+            <label class="custom-control-label " for="defaultUnchecked">Remember me</label>
+        </div>
+        <label class="float-right" for="forgot password">
+            <a href="">Forgot Password</a>
+        </label> -->
+        <!-- <br>
+        <br> -->
+        <label for="register">Don't have an account <a routerLink="/register">Click Here</a></label>
+    </form>
 </div>
-
-
-<!-- 
-    <div class="container mt-5">
-        <section id="content">
-            <form action="">
-                <h1>Login Form</h1>
-                <div>
-                    <input type="text" placeholder="Username" required id="username" />
-                </div>
-                <div>
-                    <input type="password" placeholder="Password" required="" id="password" />
-                </div>
-                <div >
-                    <input type="submit" value="Log in" />
-                    <a href="#">Forget password?</a>
-                    <a href="#">Register</a>
-                </div>
-            </form> form -->
-<!-- </section>content -->
-<!-- </div> -->
+</div>
