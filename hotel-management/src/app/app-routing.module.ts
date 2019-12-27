@@ -11,13 +11,15 @@ import { UserHotelListComponent } from './user-hotel-list/user-hotel-list.compon
 import { VerticalHeaderComponent } from './vertical-header/vertical-header.component';
 import { EmployeeHotelInfoComponent } from './employee-hotel-info/employee-hotel-info.component';
 import { AdminAddHotelComponent } from './admin-add-hotel/admin-add-hotel.component';
-import { AdminAddRoomComponent } from './admin-add-room/admin-add-room.component';
 import { AdminRoomListComponent } from './admin-room-list/admin-room-list.component';
+import { AdminAddRoomComponent } from './admin-add-room/admin-add-room.component';
 import { AdminEmployeeListComponent } from './admin-employee-list/admin-employee-list.component';
+import { AdminAddEmployeeComponent } from './admin-add-employee/admin-add-employee.component';
 import { EmployeeRoomListComponent } from './employee-room-list/employee-room-list.component';
 import { EmployeeUserRoomBookingComponent } from './employee-user-room-booking/employee-user-room-booking.component';
 import { UserRoomListComponent } from './user-room-list/user-room-list.component';
-import { AdminAddEmployeeComponent } from './admin-add-employee/admin-add-employee.component';
+import { UserRoomBookingComponent } from './user-room-booking/user-room-booking.component';
+import { AdminUpdateHotelComponent } from './admin-update-hotel/admin-update-hotel.component';
 
 
 const routes: Routes = [
@@ -30,10 +32,11 @@ const routes: Routes = [
     component: VerticalHeaderComponent,
     // canActivate: [AuthGuard],
 
-    children: [                          // <---- child components declared here
+    children: [                          //<---- child components declared here
       {
         path: 'admin-profile',
         component: AdminProfileComponent
+
       },
       {
         path: 'admin-hotel-list',
@@ -45,6 +48,13 @@ const routes: Routes = [
       {
         path: 'admin-add-hotel',
         component: AdminAddHotelComponent,
+        canActivate: [AuthGuard], data: {
+          expectedRole: ['Admin']
+        }
+      },
+      {
+        path: 'admin-update-hotel',
+        component: AdminUpdateHotelComponent,
         canActivate: [AuthGuard], data: {
           expectedRole: ['Admin']
         }
@@ -87,6 +97,13 @@ const routes: Routes = [
       {
         path: 'user-room-list',
         component: UserRoomListComponent,
+        canActivate: [AuthGuard], data: {
+          expectedRole: ['User']
+        }
+      },
+      {
+        path: 'user-room-booking',
+        component: UserRoomBookingComponent,
         canActivate: [AuthGuard], data: {
           expectedRole: ['User']
         }

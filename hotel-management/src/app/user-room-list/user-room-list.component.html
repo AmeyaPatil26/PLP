@@ -1,3 +1,15 @@
-
-<p>user-room-list works!</p>
-<h1>{{dataFromParent}}</h1>
+<div *ngFor='let room of roomList'>
+    <div class="card card-body float-left" style="height: 500px; width: 380px;">
+        <img src="{{room.roomImageURL}}" alt="" style="height: 200px; width: 200px;">
+        <label for="licenceNumber">Licence Number: {{room.licenceNumber}}</label>
+        <label for="hotelName">Name :{{room.hotelName}}</label>
+        <label for="roomCount">roomCount :{{room.roomCount}}</label>
+        <label for="roomType">roomType :{{room.roomType}}</label>
+        <label for="roomCapacity">roomCapacity :{{room.roomCapacity}}</label>
+        <label for="roomType">roomAmount :{{room.roomAmount}}</label>
+        <label for="roomType">roomStatus :{{room.roomStatus}}</label>
+        <button class="btn btn-outline-dark" (click)="userRoomBook(room)">
+            Book Room
+       </button>
+    </div>
+</div>

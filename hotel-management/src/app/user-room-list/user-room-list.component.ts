@@ -1,5 +1,8 @@
-  
 import { Component, OnInit, Input } from '@angular/core';
+import { HotelService } from '../hotel.service';
+import { Room } from '../room-information';
+import { Router } from '@angular/router';
+import { Booking } from '../booking-information';
 
 @Component({
   selector: 'app-user-room-list',
@@ -7,12 +10,22 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./user-room-list.component.css']
 })
 export class UserRoomListComponent implements OnInit {
+  roomList: any;
 
-  constructor() { }
+  constructor(public hotelService: HotelService, private router: Router) {
+    this.roomList = hotelService.roomList;
+    console.log(this.roomList);
+  }
 
-  @Input()
-  dataFromParent;
   ngOnInit() {
   }
+
+  userRoomBook(room: Room) {
+    if (room.roomStatus === 'Available' && room.roomCount > 0) {
+      this.hotelService.userRoomBooking(room);
+
+    }
+  }
+
 
 }

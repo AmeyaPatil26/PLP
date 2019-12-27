@@ -21,20 +21,18 @@ export class LoginComponent implements OnInit {
       response => {
         console.log('error message', response.description);
         this.error = response.description;
-        console.log(response.statusCode);
-        console.log(response.adminEmployeeUserBean);
         loginForm.reset();
-        if (response.statusCode === 200 && response.adminEmployeeUserBean.type === 'Admin') {
+        if (response.statusCode === 200 && response.type === 'Admin') {
           console.log('inside if');
           const user = JSON.stringify(response);
           localStorage.setItem('token', user);
           this.router.navigateByUrl('/vertical-header');
-        } else if (response.statusCode === 200 && response.adminEmployeeUserBean.type === 'User') {
+        } else if (response.statusCode === 200 && response.type === 'User') {
           console.log('inside if');
           const user = JSON.stringify(response);
           localStorage.setItem('token', user);
           this.router.navigateByUrl('/vertical-header');
-        } else if (response.statusCode === 200 && response.adminEmployeeUserBean.type === 'Employee') {
+        } else if (response.statusCode === 200 && response.type === 'Employee') {
           console.log('inside if');
           const user = JSON.stringify(response);
           localStorage.setItem('token', user);

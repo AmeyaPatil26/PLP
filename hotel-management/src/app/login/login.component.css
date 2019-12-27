@@ -1,14 +1,16 @@
-.backImage{
-        background-image: url("/assets/images/room.jpg");
-        background-size: cover;
-        background-position: center;
-        height: 500px;
-}
-h5{
-    padding-top: 40px;
+#errorMsg{
     text-align: center;
+    margin-top: 10px;
+    font-size: 15px;
+  
 }
+
 h4{
+    padding-top: 10px;
+    padding-right: 50px;
     text-align: center;
-    
+    font-size: 30px;
+    color: black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
 }

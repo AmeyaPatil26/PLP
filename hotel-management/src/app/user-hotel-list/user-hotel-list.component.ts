@@ -29,10 +29,9 @@ export class UserHotelListComponent implements OnInit {
   }
 
 
-  userRoomList(h) {
-    this.selectedHotelData = h;
-    this.hotelService = this.selectedHotelData;
-    this.router.navigateByUrl('/user-room-list');
+  userRoomList(hotel) {
+    this.selectedHotelData = hotel;
+    this.hotelService.singleHotelData(hotel); 
   }
 
 }

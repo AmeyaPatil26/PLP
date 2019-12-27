@@ -1,38 +1,37 @@
-<mat-sidenav-container class="sidenav-container" *ngIf='isLoggedIn() '>
+<!-- Vertical-bar -->
+
+<mat-sidenav-container class="sidenav-container" *ngIf='isLoggedIn() ' >
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async)" class="border border-dark">
-    <span> <img alt="image" class="img-circle"
-        src="https://cdn.pixabay.com/photo/2016/11/18/22/21/architecture-1837150__340.jpg" height="250px" width="270px">
-    </span>
-    <mat-toolbar  class="menuColor">
-      Menu</mat-toolbar>
-    <mat-nav-list>
-      <p><a mat-list-item *ngIf='isAdmin()  ' routerLink="./admin-hotel-list">Admin Hotel List</a></p>
-      <p> <a mat-list-item *ngIf='isAdmin()  ' routerLink="./admin-add-hotel">Add Hotel</a></p>
-      <p> <a mat-list-item *ngIf='isAdmin()  ' routerLink="./admin-room-list">Admin Room List</a></p>
-      <p> <a mat-list-item *ngIf='isAdmin()  ' routerLink="./admin-add-room">Add Room</a></p>
-
-      <p> <a mat-list-item *ngIf='isAdmin()  ' routerLink="./admin-employee-list">Admin Employee List</a></p>
-      <p> <a mat-list-item *ngIf='isAdmin()  ' routerLink="./admin-add-employee">Add Employee</a></p>
-
-      <p> <a mat-list-item *ngIf='isAdmin() || isUser() || isEmployee()' routerLink="./admin-profile">Profile</a></p>
-
-      <p> <a mat-list-item (click)="logout()">Logout</a></p>
+    <mat-toolbar >Menu</mat-toolbar>
+    <mat-nav-list >
+      <a mat-list-item *ngIf='isAdmin()  ' routerLink="./admin-hotel-list">Hotel List</a>
+      <a mat-list-item *ngIf='isAdmin()  ' routerLink="./admin-add-hotel">Add Hotel</a>
       
-      <p> <a mat-list-item *ngIf='isUser() ' routerLink="./user-hotel-list">User Hotel List</a></p>
-      <p> <a mat-list-item *ngIf='isEmployee() ' routerLink="./employee-hotel-info">Employee Hotel Info</a></p>
-      <p> <a mat-list-item *ngIf='isEmployee() ' routerLink="./employee-room-list">Employee Room List</a></p>
-      <p> <a mat-list-item *ngIf='isEmployee() ' routerLink="./employee-user-booking">Employee User Booking</a></p>
+      <a mat-list-item *ngIf='isAdmin()  ' routerLink="./admin-room-list">Room List</a>
+      <a mat-list-item *ngIf='isAdmin()  ' routerLink="./admin-add-room">Add Room</a>
+
+      <a mat-list-item *ngIf='isAdmin()  ' routerLink="./admin-employee-list">Employee List</a>
+      <a mat-list-item *ngIf='isAdmin()  ' routerLink="./admin-add-employee">Add Employee</a>
+
+      <a mat-list-item *ngIf='isAdmin() || isUser() || isEmployee()' routerLink="./admin-profile">Profile</a>
+
+      <a mat-list-item *ngIf='isUser() ' routerLink="./user-hotel-list">Hotel List</a>
+      <!-- <a mat-list-item *ngIf='isUser() ' routerLink="./user-room-list"></a> -->
+      <a mat-list-item *ngIf='isEmployee() ' routerLink="./employee-hotel-info">Hotel Info</a>
+      <a mat-list-item *ngIf='isEmployee() ' routerLink="./employee-room-list">Room List</a>
+      <a mat-list-item *ngIf='isEmployee() ' routerLink="./employee-user-booking">Booking</a>
+      <a mat-list-item (click)="logout()">Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar class="bg-dark">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        <mat-icon aria-label="Side nav toggle icon">Menu</mat-icon>
       </button>
-  <span class="text-light" id="hotel">Hotel Management System</span>
+      <span class="text-light">Hotel Management System</span>
     </mat-toolbar>
     <router-outlet></router-outlet>
 

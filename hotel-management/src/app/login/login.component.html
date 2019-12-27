@@ -1,11 +1,9 @@
-<div class="backImage">
-    <h5></h5>
-<div class="col-md-4 offset-md-4  card card-body border border-dark">
-    <div class="text-danger" *ngIf='error'>
+<div class="col-md-4 offset-md-4 mt-5 card card-body border border-dark">
+    <div class="text-danger" *ngIf='error' id="errorMsg">
         {{error}}
     </div>
      <h4>
-        Login Here!!!
+        Login here
     </h4>
     <hr>
     <form #loginForm="ngForm" (ngSubmit)='loginUser(loginForm)'>
@@ -15,23 +13,28 @@
                 ngModel required email>
             <div *ngIf='email.touched && email.invalid'>
                 <p class="text-danger" *ngIf='email.errors.required'>
-                    This field is mandatory
+                    *This field is mandatory
                 </p>
                 <p class="text-danger" *ngIf='email.errors.email'>
-                    please enter valid email id
+                    *Please Enter valid email id<br>
+                    *It should contain @ and .
                 </p>
             </div>
         </div>
         <div class="form-group">
             <label for="Password">Password</label>
             <input class="form-control" type="password" name="password" placeholder="Enter Your password"
-                #password='ngModel' ngModel required password minlength="4">
+                #password='ngModel' ngModel required  minlength="4">
+                <!-- pattern="((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})" -->
             <div *ngIf='password.touched && password.invalid'>
                 <p class="text-danger" *ngIf='password.errors.required'>
-                    This field is mandatory
+                    *This field is mandatory
+                </p>
+                <p class="text-danger" *ngIf='password.errors.pattern'>
+                    *This field contain one alphabet , one special charachter and one number
                 </p>
                 <p class="text-danger" *ngIf='password.errors.minlength'>
-                    Minimnum 3 charachter is mandatory
+                    *This field minimum length is 4
                 </p>
             </div>
         </div>
@@ -61,5 +64,4 @@
         <br> -->
         <label for="register">Don't have an account <a routerLink="/register">Click Here</a></label>
     </form>
-</div>
 </div>

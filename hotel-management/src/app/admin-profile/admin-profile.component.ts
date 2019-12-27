@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { NgForm } from '@angular/forms';
 import { User } from '../user-information';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-profile',
@@ -19,13 +19,15 @@ export class AdminProfileComponent implements OnInit {
   nationality: string;
   userDetails = JSON.parse(localStorage.getItem('token'));
   profile: any;
-
+ 
   constructor(private auth: AuthService) {
     console.log('...................', this.userDetails);
     this.profile = this.userDetails.adminEmployeeUserBean;
     console.log('............', this.profile);
     this.auth.getProfileData(this.profile).subscribe((data) => {
       console.log('..................data', data);
+      
+
       this.singleUsers = data;
       this.name = this.singleUsers.adminEmployeeUserBean.name;
       console.log('.....................name', this.name);

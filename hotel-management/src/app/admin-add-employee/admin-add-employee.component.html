@@ -1,75 +1,100 @@
-<div class="col-md-4 offset-md-4 mt-5 card card-body border border-dark">
+
+<h4>Add Employee</h4>
+<div class="col-md-4 offset-md-4 card card-body border border-dark">
     <form #addEmployee='ngForm' (ngSubmit)='addNewEmployee(addEmployee)'>
         <!--    -->
+        <div class="text-danger" *ngIf='backendRespnse' id="errorMsg">
+            {{backendRespnse.description}}
+        </div>
         <div class="form-group">
             <label for="licenceNumber">
-                licenceNumber:
+                Licence Number:
             </label>
             <input type="text" name="licenceNumber" class="form-control" #licenceNumber="ngModel"
             pattern="^(H)[0-9]{8}$" ngModel required>
             <div *ngIf='licenceNumber.touched && licenceNumber.invalid'>
-                <p class="alert alert-danger" *ngIf='licenceNumber.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='licenceNumber.errors.required'>
+                    *This field is mandatory
                 </p>
-                <p class="alert alert-danger" *ngIf='licenceNumber.errors.pattern'>
-                    please enter valid licenceNumber
+                <p class="text-danger" *ngIf='licenceNumber.errors.pattern'>
+                    *Invalid Licence Number!!! <br>It should contain 'H' and 8 digit number
                 </p>
             </div>
         </div>
 
         <div class="form-group">
             <label for="hotelName">
-                hotelName:
+                Hotel Name:
             </label>
             <input type="text" name="hotelName" class="form-control" #hotelName="ngModel"
-               ngModel required>
+               ngModel required minlength="2">
             <div *ngIf='hotelName.touched && hotelName.invalid'>
-                <p class="alert alert-danger" *ngIf='hotelName.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='hotelName.errors.required'>
+                    *This field is mandatory
                 </p>
-            
+                <p class="text-danger" *ngIf='hotelName.errors.minlength'>
+                    *This field required minimum two Charachter
+                </p>
             </div>
         </div>
 
         <div class="form-group">
             <label for="name">
-                name: 
+                Name: 
             </label>
             <input type="text" name="name" class="form-control" #name="ngModel" ngModel
-              required>
+             placeholder="Enter name and surname" required minlength="2" pattern="\\w+\\s\\w+">
             <div *ngIf='name.touched && name.invalid'>
-                <p class="alert alert-danger" *ngIf='name.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='name.errors.required'>
+                    *This field is mandatory
                 </p>
-                
+                <p class="text-danger" *ngIf='hotelName.errors.minlength'>
+                    *This field required minimum two Charachter
+                </p>
+                <p class="text-danger" *ngIf='hotelName.errors.minlength'>
+                    *Enter your Name and surname 
+                </p>
             </div>
         </div>
 
         <div class="form-group">
             <label for="email">
-                email:
+                Email:
             </label>
-            <input type="text" name="email" class="form-control" #email="ngModel" ngModel
-        required>
+            <input type="text" name="email" class="form-control" #email="ngModel" ngModel email
+        required pattern="^[a-zA-Z0-9_+&-]+(?:\\. + [a-zA-Z0-9_+&-]+)*@ + (?:[a-zA-Z0-9-]+\\.)+[a-z
+        + A-Z]{2,7}$">
             <div *ngIf='email.touched && email.invalid'>
-                <p class="alert alert-danger" *ngIf='email.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='email.errors.required'>
+                    *This field is mandatory
                 </p>
-                <p class="alert alert-danger" *ngIf='email.errors.pattern'>
-                    please enter valid email
+                <p class="text-danger" *ngIf='email.errors.email'>
+                    *Please enter valid email
+                    <br>
+                    *Email must contain @ and .
                 </p>
+                
+                <!-- <p class="text-danger" *ngIf='email.errors.email.pattern'>
+                   jkkjjk
+                </p> -->
             </div>
         </div>
 
         <div class="form-group">
             <label for="password">
-                password:
+                Password:
             </label>
             <input type="text" name="password" class="form-control" #password="ngModel"
-           ngModel required>
+           ngModel required pattern="((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})" minlength="4">
             <div *ngIf='password.touched && password.invalid'>
-                <p class="alert alert-danger" *ngIf='password.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='password.errors.required'>
+                    *This field is mandatory
+                </p>
+                <p class="text-danger" *ngIf='password.errors.pattern'>
+                    *This field contain one alphabet , one special charachter and one number
+                </p>
+                <p class="text-danger" *ngIf='password.errors.minlength'>
+                    *This field minimum length is 4
                 </p>
              
             </div>
@@ -77,27 +102,36 @@
 
         <div class="form-group">
             <label for="address">
-                address:
+                Address:
             </label>
             <input type="text" name="address" class="form-control" #address="ngModel"
-           ngModel required>
+           ngModel required minlength="3">
             <div *ngIf='address.touched && address.invalid'>
-                <p class="alert alert-danger" *ngIf='address.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='address.errors.required'>
+                    *This field is mandatory
                 </p>
+                <p class="text-danger" *ngIf='address.errors.minlength'>
+                    *This field required minimum length is 3
+                </p>
+                
              
             </div>
         </div>
 
         <div class="form-group">
             <label for="nationality">
-                nationality:
+                Nationality:
             </label>
-            <input type="text" name="nationality" class="form-control" #nationality="ngModel"
-           ngModel required>
+            <!-- <input name="nationality" class="form-control" #nationality="ngModel"
+           ngModel required> -->
+           <select name="roomType" class="form-control" #roomType="ngModel" ngModel required>
+            <option value="Indian">Indian</option>
+            <option value="Turkish">Turkish</option>
+            <option value="Brazilian">Brazilian</option>
+        </select>
             <div *ngIf='nationality.touched && nationality.invalid'>
-                <p class="alert alert-danger" *ngIf='nationality.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='nationality.errors.required'>
+                    *This field is mandatory
                 </p>
              
             </div>
@@ -105,15 +139,17 @@
 
         <div class="form-group">
             <label for="contactNumber">
-                contactNumber:
+                Contact Number:
             </label>
             <input type="text" name="contactNumber" class="form-control" #contactNumber="ngModel"
-           ngModel required>
+           ngModel required pattern = "[7-9]{1}[0-9]{9}" >
             <div *ngIf='contactNumber.touched && contactNumber.invalid'>
-                <p class="alert alert-danger" *ngIf='contactNumber.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='contactNumber.errors.required'>
+                    *This field is mandatory
                 </p>
-             
+                <p class="text-danger" *ngIf='contactNumber.errors.pattern'>
+                    *Please Enter 10 digit number
+                </p>
             </div>
         </div>
 
@@ -126,10 +162,6 @@
             <button class="btn btn-outline-dark" type="submit" [disabled]='addEmployee.invalid'>
                 Add
             </button>
-        </div>
-
-        <div class="alert alert-danger" *ngIf='backendRespnse'>
-            {{backendRespnse.description}}
         </div>
 
     </form>

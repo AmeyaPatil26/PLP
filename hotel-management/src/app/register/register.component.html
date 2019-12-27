@@ -1,115 +1,126 @@
-<div class="bg col-md-12">
-    <div class="col-md-4 offset-md-4 mt-4 card card-body border border-dark">
-        <div class="alert alert-danger" *ngIf='error'>
-            {{error.description}}
-        </div>
+<div class="col-md-4 offset-md-4 card card-body border border-dark">
+    <div class="alert alert-danger" *ngIf='error' id="errorMsg">
+        {{error.description}}
+    </div>
 
-        <h4>
-            Register here
-        </h4>
-        <hr>
-        <form #registerForm="ngForm" (ngSubmit)="registerUser(registerForm)">
-            <div class="form-group">
-                <label for="Name">Name</label>
-                <input class="form-control" type="text" name="name" placeholder="Enter Your Name" #name='ngModel'
-                    ngModel required pattern="^[[A-Z]|[a-z]][[A-Z]|[a-z]|\\d|[_]]{7,29}$">
-                <div *ngIf='name.touched && name.invalid'>
-                    <p class="alert alert-danger" *ngIf='name.errors.required'>
-                        This field is mandatory
-                    </p>
-                    <p class="alert alert-danger" *ngIf='name.errors.pattern'>
-                        Dont Start Name with Number or Special Charactrer </p>
-                </div>
+    <h4>
+        Register here
+    </h4>
+    <hr>
+    <form #registerForm="ngForm" (ngSubmit)="registerUser(registerForm)">
+        <div class="form-group">
+            <label for="Name">Name</label>
+            <input class="form-control" type="text" name="name" placeholder="Enter Your Name" #name='ngModel' ngModel
+               placeholder="ter name and surname" required pattern="^[[A-Z]|[a-z]][[A-Z]|[a-z]|\\d|[_]]{7,29}$">
+            <div *ngIf='name.touched && name.invalid'>
+                <p class="text-danger" *ngIf='name.errors.required'>
+                    *This field is mandatory
+                </p>
+                <p class="Text-danger" *ngIf='name.errors.pattern'>
+                    *Dont Start Name with Number or Special Charactrer </p>
             </div>
-            <div class="form-group">
-                <label for="Contact-no">Contact No</label>
-                <input class="form-control" type="text" name="contactNumber" id="mobileno"
-                    placeholder="Enter Your Mobile no" #contactNumber='ngModel' ngModel required pattern="[0-9]{10}">
+        </div>
+        <div class="form-group">
+            <label for="Contact-no">Contact No</label>
+            <input class="form-control" type="text" name="contactNumber" id="mobileno" placeholder="Enter Your Mobile no"
+                #contactNumber='ngModel' ngModel required pattern="[0-9]{10}">
 
-                <div *ngIf='contactNumber.touched && contactNumber.invalid'>
+            <div *ngIf='contactNumber.touched && contactNumber.invalid'>
 
-                    <p class="alert alert-danger" *ngIf='contactNumber.errors.required'>
-                        This field is mandatory
-                    </p>
-                    <!-- <p class="alert alert-danger" *ngIf='mobileno.errors.minlength'>
+                <p class="text-danger" *ngIf='contactNumber.errors.required'>
+                    *This field is mandatory
+                </p>
+                <!-- <p class="alert alert-danger" *ngIf='mobileno.errors.minlength'>
                     please enter 10 digit number
                 </p> -->
-                    <p class="alert alert-danger" *ngIf='contactNumber.errors.pattern'>
-                        please enter 10 digit number
-                    </p>
-                </div>
+                <p class="alert alert-danger" *ngIf='contactNumber.errors.pattern'>
+                    *Please enter 10 digit number
+                </p>
             </div>
-            <div class="form-group">
-                <label for="Email ID">Email ID</label>
-                <input class="form-control" type="email" name="email" placeholder="Enter Your Email ID" #email='ngModel'
-                    email required ngModel>
-                <div *ngIf='email.touched && email.invalid'>
-                    <p class="alert alert-danger" *ngIf='email.errors.required'>
-                        THis field is mandatory
-                    </p>
-                    <p class="alert alert-danger" *ngIf='email.errors.email'>
-                        please enter valid email id
-                    </p>
-                </div>
+        </div>
+        <div class="form-group">
+            <label for="Email ID">Email ID</label>
+            <input class="form-control" type="email" name="email" placeholder="Enter Your Email ID" #email='ngModel'
+                email required ngModel>
+            <div *ngIf='email.touched && email.invalid'>
+                <p class="text-danger" *ngIf='email.errors.required'>
+                    This field is mandatory
+                </p>
+                <p class="text-danger" *ngIf='email.errors.email'>
+                    *Please enter valid email id<br>
+                    It must contain @ and .
+                </p>
             </div>
-            <div class="form-group">
-                <label for="Password">Password</label>
-                <input class="form-control" type="password" id="password" name="password" required minlength="4"
-                    placeholder="Enter Your password" #password='ngModel' ngModel>
-                <div *ngIf='password.touched && password.invalid'>
-                    <p class="alert alert-danger" *ngIf='password.errors.required'>
-                        please enter valid password
-                    </p>
-                    <p class="alert alert-danger" *ngIf='password.errors.minlength'>
-                        please enter 4 character password
-                    </p>
-                </div>
+        </div>
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input class="form-control" type="password" id="password" name="password" required minlength="4"
+                placeholder="Enter Your password" #password='ngModel' ngModel
+                minlength="4">
+                <!-- pattern="((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})" -->
+            <div *ngIf='password.touched && password.invalid'>
+                <p class="alert alert-danger" *ngIf='password.errors.required'>
+                    *This field is mandatory
+                </p>
+                <p class="text-danger" *ngIf='password.errors.pattern'>
+                    *This field contain one alphabet , one special charachter and one number
+                </p>
+                <p class="text-danger" *ngIf='password.errors.minlength'>
+                    *This field minimum length is 4
+                </p>
             </div>
-            <div class="form-group">
-                <label for="address">Address</label>
-                <input class="form-control" type="text" name="address" placeholder="Enter Your address"
-                    #address='ngModel' ngModel required>
-                <div *ngIf='address.touched && address.invalid'>
-                    <p class="alert alert-danger" *ngIf='address.errors.required'>
-                        THis field is mandatory
-                    </p>
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input class="form-control" type="text" name="address" placeholder="Enter Your address" #address='ngModel'
+                ngModel required minlength="3">
+            <div *ngIf='address.touched && address.invalid'>
+                <p class="text-danger" *ngIf='address.errors.required'>
+                    *This field is mandatory
+                </p>
+                <p class="text-danger" *ngIf='address.errors.minlength'>
+                    *This field required minimum length is 3
+                </p>
+            </div>
 
-                </div>
+        </div>
+        <div class="form-group">
+            <label for="nationality">Nationality</label>
+            <!-- <input class="form-control" type="text" name="nationality" placeholder="Enter Your nationality" #nationality='ngModel'
+                ngModel required> -->
+                <select name="roomType" class="form-control" #roomType="ngModel" ngModel required>
+                    <option value="Indian">Indian</option>
+                    <option value="Turkish">Turkish</option>
+                    <option value="Brazilian">Brazilian</option>
+                </select>
+            <div *ngIf='nationality.touched && nationality.invalid'>
+                <p class="text-danger" *ngIf='nationality.errors.required'>
+                    *This field is mandatory
+                </p>
 
             </div>
-            <div class="form-group">
-                <label for="address">Nationality</label>
-                <input class="form-control" type="text" name="nationality" placeholder="Enter Your nationality"
-                    #nationality='ngModel' ngModel required>
-                <div *ngIf='nationality.touched && nationality.invalid'>
-                    <p class="alert alert-danger" *ngIf='nationality.errors.required'>
-                        THis field is mandatory
-                    </p>
 
-                </div>
-
-            </div>
-            <!-- <div class="form-group">
+        </div>
+        <!-- <div class="form-group">
             <label for="role">Role</label>
             <input class="form-control" type="text" name="role" placeholder="Enter Your role" #role='ngModel' ngModel>
         </div> -->
 
-            <div class="float-right">
+        <div class="float-right">
 
-                <button class=" btn btn-dark" type="submit" [disabled]='registerForm.invalid'>
-                    Register
+            <button class=" btn btn-dark" type="submit" [disabled]='registerForm.invalid'>
+                Register
 
-                </button>&nbsp;
-                <button class=" btn btn-dark">
-                    Cancel
+            </button>&nbsp;
+            <button class=" btn btn-dark">
+                Cancel
 
-                </button>
+            </button>
 
-            </div>
-            <br>
-            <br>
+        </div>
+        <br>
+        <br>
 
-            <label for="register">Already have an account <a routerLink="/login">Click Here</a></label>
-        </form>
-    </div>
+        <label for="register">Already have an account <a routerLink="/login">Click Here</a></label>
+    </form>
 </div>

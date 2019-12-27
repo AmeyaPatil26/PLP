@@ -1,22 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { HotelService } from '../hotel.service';
-import { Hotel } from '../hotel-information';
 import { NgForm } from '@angular/forms';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-@Component({
-  selector: 'app-admin-hotel-list',
-  templateUrl: './admin-hotel-list.component.html',
-  styleUrls: ['./admin-hotel-list.component.css']
-})
-export class AdminHotelListComponent implements OnInit {
+import { Hotel } from '../hotel-information';
+import { HotelService } from '../hotel.service';
 
-  constructor(public hotelService: HotelService,public dialog: MatDialog) {
+@Component({
+  selector: 'app-admin-update-hotel',
+  templateUrl: './admin-update-hotel.component.html',
+  styleUrls: ['./admin-update-hotel.component.css']
+})
+export class AdminUpdateHotelComponent implements OnInit {
+
+
+  constructor(public hotelService: HotelService) {
     this.adminHotelList();
   }
   hotelList: [];
   selectedHotel: Hotel = {
     hotelId: null,
-    licenceNumber: null, 
+    licenceNumber: null,
     hotelName: null,
     hotelAddress: null,
     hotelContactNumber: null,
@@ -59,8 +60,6 @@ export class AdminHotelListComponent implements OnInit {
       }
     );
   }
-
- 
   ngOnInit() {
   }
 

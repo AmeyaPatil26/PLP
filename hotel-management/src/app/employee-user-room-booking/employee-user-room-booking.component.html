@@ -1,6 +1,7 @@
+<h4>Booking</h4>
 <div class="col-md-4 offset-md-4 mt-5 card card-body border border-dark">
     <form #bookRoom='ngForm' (ngSubmit)='employeeBookRoom(bookRoom)'>
-        <div class="alert alert-danger" *ngIf='backendRespnse'>
+        <div class="text-danger" *ngIf='backendRespnse' id="errorMsg">
             {{backendRespnse.description}}
         </div>
         <div *ngIf="singleHotel">
@@ -12,12 +13,12 @@
         </div>
         <div class="form-group">
             <label for="bookingAmount">
-                bookingAmount:
+                Booking Amount:
             </label>
             <input type="number" name="bookingAmount" class="form-control" #bookingAmount="ngModel" ngModel required>
             <div *ngIf='bookingAmount.touched && bookingAmount.invalid'>
-                <p class="alert alert-danger" *ngIf='bookingAmount.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='bookingAmount.errors.required'>
+                    *This field is mandatory
                 </p>
 
             </div>
@@ -26,14 +27,14 @@
 
 
         <div class="form-group">
-            <label for="roomType">*Room Type:</label>
+            <label for="roomType">Room Type:</label>
             <select name="roomType" class="form-control" #roomType="ngModel" ngModel required>
                 <option value="AC">AC</option>
                 <option value="Non AC">Non AC</option>
             </select>
             <div *ngIf='roomType.touched && roomType.invalid'>
                 <p class="alert alert-danger" *ngIf='roomType.errors.required'>
-                    This field is mandatory
+                    *This field is mandatory
                 </p>
 
             </div>
@@ -42,14 +43,14 @@
 
 
         <div class="form-group">
-            <label for="roomCapacity">capacity:</label>
+            <label for="roomCapacity">Capacity:</label>
             <select name="roomCapacity" class="form-control" #roomCapacity="ngModel" ngModel required>
                 <option value="singleBed">Single Bed</option>
                 <option value="Double bed">Double Bed</option>
             </select>
             <div *ngIf='roomCapacity.touched && roomCapacity.invalid'>
-                <p class="alert alert-danger" *ngIf='roomCapacity.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='roomCapacity.errors.required'>
+                    *This field is mandatory
                 </p>
 
             </div>
@@ -57,12 +58,19 @@
 
         <div class="form-group">
             <label for="email">
-                email:
+                Email:
             </label>
-            <input type="email" name="email" class="form-control" #email="ngModel" ngModel required>
+            <input type="email" name="email" class="form-control" #email="ngModel" ngModel
+            pattern="^[a-zA-Z0-9_+&-]+(?:\\. + [a-zA-Z0-9_+&-]+)*@ + (?:[a-zA-Z0-9-]+\\.)+[a-z
+        + A-Z]{2,7}$" required>
             <div *ngIf='email.touched && email.invalid'>
-                <p class="alert alert-danger" *ngIf='email.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='email.errors.required'>
+                    *This field is mandatory
+                </p>
+                <p class="text-danger" *ngIf='email.errors.email'>
+                    *Please enter valid email
+                    <br>
+                    *Email must contain @ and .
                 </p>
 
             </div>
@@ -71,38 +79,52 @@
 
         <div class="form-group">
             <label for="name">
-                name:
+                Name:
             </label>
-            <input type="text" name="name" class="form-control" #name="ngModel" ngModel required>
+            <input type="text" name="name" class="form-control" #name="ngModel" ngModel 
+            placeholder="Enter name and surname" required minlength="2" pattern="\\w+\\s\\w+">
             <div *ngIf='name.touched && name.invalid'>
                 <p class="alert alert-danger" *ngIf='name.errors.required'>
-                    This field is mandatory
+                    *This field is mandatory
                 </p>
-
+                <p class="text-danger" *ngIf='hotelName.errors.minlength'>
+                    *This field required minimum two Charachter
+                </p>
+                <p class="text-danger" *ngIf='hotelName.errors.minlength'>
+                    *Enter your Name and surname 
+                </p>
             </div>
         </div>
 
         <div class="form-group">
             <label for="address">
-                address:
+                Address:
             </label>
-            <input type="text" name="address" class="form-control" #address="ngModel" ngModel required>
-            <div *ngIf='address.touched && address.invalid'>
-                <p class="alert alert-danger" *ngIf='address.errors.required'>
-                    This field is mandatory
+            <input type="text" name="address" class="form-control" #address="ngModel" ngModel 
+            minlength="3">
+            <div *ngIf='address.touched && address.invalid' >
+                <p class="text-danger" *ngIf='address.errors.required'>
+                    *This field is mandatory
                 </p>
-
+                <p class="text-danger" *ngIf='address.errors.minlength'>
+                    *This field required minimum length is 3
+                </p>
+                
             </div>
         </div>
 
         <div class="form-group">
             <label for="contactNumber">
-                contactNumber:
+                Contact Number:
             </label>
-            <input type="text" name="contactNumber" class="form-control" #contactNumber="ngModel" ngModel required>
+            <input type="text" name="contactNumber" class="form-control" #contactNumber="ngModel" ngModel 
+            pattern = "[7-9]{1}[0-9]{9}" required>
             <div *ngIf='contactNumber.touched && contactNumber.invalid'>
-                <p class="alert alert-danger" *ngIf='contactNumber.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='contactNumber.errors.required'>
+                    *This field is mandatory
+                </p>
+                <p class="text-danger" *ngIf='contactNumber.errors.pattern'>
+                    *Please Enter 10 digit number
                 </p>
 
             </div>
@@ -113,9 +135,14 @@
                 nationality:
             </label>
             <input type="text" name="nationality" class="form-control" #nationality="ngModel" ngModel required>
+            <select name="roomType" class="form-control" #roomType="ngModel" ngModel required>
+                <option value="Indian">Indian</option>
+                <option value="Turkish">Turkish</option>
+                <option value="Brazilian">Brazilian</option>
+            </select>
             <div *ngIf='nationality.touched && nationality.invalid'>
-                <p class="alert alert-danger" *ngIf='nationality.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='nationality.errors.required'>
+                    *This field is mandatory
                 </p>
 
             </div>
@@ -123,12 +150,12 @@
 
         <div class="form-group">
             <label for="checkInDate">
-                checkInDate:
+                Check In Date:
             </label>
             <input type="date" name="checkInDate" class="form-control" #checkInDate="ngModel" ngModel required>
             <div *ngIf='checkInDate.touched && checkInDate.invalid'>
-                <p class="alert alert-danger" *ngIf='checkInDate.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='checkInDate.errors.required'>
+                    *This field is mandatory
                 </p>
 
             </div>
@@ -136,12 +163,12 @@
 
         <div class="form-group">
             <label for="checkOutDate">
-                checkOutDate:
+                Check Out Date:
             </label>
             <input type="date" name="checkOutDate" class="form-control" #checkOutDate="ngModel" ngModel required>
             <div *ngIf='checkOutDate.touched && checkOutDate.invalid'>
-                <p class="alert alert-danger" *ngIf='checkOutDate.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='checkOutDate.errors.required'>
+                    *This field is mandatory
                 </p>
 
             </div>

@@ -11,4 +11,4 @@ export class Employee {
         public contactNumber: string,
         public nationality: string
     ) { }
-}
+} 

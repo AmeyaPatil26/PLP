@@ -1,1 +1,117 @@
-<p>user-room-booking works!</p>
+<div >
+    <form #totalDays='ngForm' (ngSubmit)='calculateTotalDays(totalDays)'>
+        <input type="hidden" name="bookingAmount" class="form-control" #bookingAmount="ngModel"
+        [(ngModel)]="hotelService.singleRoomInfo.roomAmount" required>
+        <label>{{hotelService.singleRoomInfo.roomAmount}}</label>
+        <div class="form-group">
+            <label for="checkInDate">
+                checkInDate:
+            </label>
+            <input type="date" name="checkInDate" class="form-control" #checkInDate="ngModel" ngModel required>
+            <div *ngIf='checkInDate.touched && checkInDate.invalid'>
+                <p class="alert alert-danger" *ngIf='checkInDate.errors.required'>
+                    This field is mandatory
+                </p>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="checkOutDate">
+                checkOutDate:
+            </label>
+            <input type="date" name="checkOutDate" class="form-control" #checkOutDate="ngModel" ngModel required>
+            <div *ngIf='checkOutDate.touched && checkOutDate.invalid'>
+                <p class="alert alert-danger" *ngIf='checkOutDate.errors.required'>
+                    This field is mandatory
+                </p>
+
+            </div>
+        </div>
+        <button class="btn btn-outline-dark" type="submit">
+            Add
+        </button>
+    </form>
+</div>
+<div class="col-md-4 offset-md-4 mt-5 card card-body border border-dark">
+    <form #bookUserRoom='ngForm' (ngSubmit)='addUserBooking(bookUserRoom)'>
+        <!-- <div class="alert alert-danger" *ngIf='backendRespnse'>
+            {{backendRespnse.description}}
+        </div> -->
+        <div *ngIf="bookingInfo && userInfo">
+            <input type="hidden" name="licenceNumber" class="form-control" #licenceNumber="ngModel"
+                [(ngModel)]="bookingInfo.licenceNumber" required>
+
+            <input type="hidden" name="hotelName" class="form-control" #hotelName="ngModel"
+                [(ngModel)]="bookingInfo.hotelName" required>
+
+
+            <input type="hidden" name="roomType" class="form-control" #roomType="ngModel"
+                [(ngModel)]="bookingInfo.roomType" required>
+
+            <input type="hidden" name="roomCapacity" class="form-control" #roomCapacity="ngModel"
+                [(ngModel)]="bookingInfo.roomCapacity" required>
+        </div>
+        <input type="hidden" name="email" class="form-control" #email="ngModel" [(ngModel)]="userInfo.email" required>
+
+        <input type="hidden" name="name" class="form-control" #name="ngModel" [(ngModel)]="userInfo.name" required>
+
+        <input type="hidden" name="address" class="form-control" #address="ngModel" [(ngModel)]="userInfo.address"
+            required>
+
+        <input type="hidden" name="contactNumber" class="form-control" #contactNumber="ngModel"
+            [(ngModel)]="userInfo.contactNumber" required>
+
+        <input type="hidden" name="nationality" class="form-control" #nationality="ngModel"
+            [(ngModel)]="userInfo.nationality" required>
+
+        <div class="form-group">
+            <label for="bookingAmount">
+              Total Bill{{hotelService.totalBill}}
+            </label>
+            <input type="hidden" name="bookingAmount" class="form-control" #bookingAmount="ngModel"
+            [(ngModel)]="hotelService.totalBill" required>
+        </div>
+
+
+        <!-- <div class="form-group">
+            <label for="checkInDate">
+                checkInDate:
+            </label>
+            <input type="date" name="checkInDate" class="form-control" #checkInDate="ngModel" ngModel required>
+            <div *ngIf='checkInDate.touched && checkInDate.invalid'>
+                <p class="alert alert-danger" *ngIf='checkInDate.errors.required'>
+                    This field is mandatory
+                </p>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="checkOutDate">
+                checkOutDate:
+            </label>
+            <input type="date" name="checkOutDate" class="form-control" #checkOutDate="ngModel" ngModel required>
+            <div *ngIf='checkOutDate.touched && checkOutDate.invalid'>
+                <p class="alert alert-danger" *ngIf='checkOutDate.errors.required'>
+                    This field is mandatory
+                </p>
+
+            </div>
+        </div> -->
+
+
+        <div class="btn-group float-right">
+            <button class="btn btn-outline-dark" type="reset">
+                Reset
+            </button>
+            &nbsp;&nbsp;
+            <button class="btn btn-outline-dark" type="submit">
+                Add
+            </button>
+        </div>
+
+
+
+    </form>
+</div>

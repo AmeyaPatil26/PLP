@@ -19,7 +19,7 @@ export class AdminRoomListComponent implements OnInit {
     roomId: null,
     hotelId: null,
     licenceNumber: null,
-    hotelName: null,
+    hotelName: null, 
     roomCount: null,
     roomType: null,
     roomCapacity: null,

@@ -14,4 +14,20 @@ export class AdminAddHotelComponent implements OnInit {
 
   ngOnInit() {
   }
+
+
+
+
+  addNewHotel(addHotel: NgForm) {
+    console.log(addHotel.value);
+    this.hotelService.addHotel(addHotel.value).subscribe(res => {
+      console.log('........response', res);
+      this.backendRespnse = res;
+      console.log('.....backendresponse', this.backendRespnse);
+      addHotel.reset();
+    },
+      err => {
+        console.log(err);
+      });
+  }
 }

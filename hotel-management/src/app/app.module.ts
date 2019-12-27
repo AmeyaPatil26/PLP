@@ -23,7 +23,7 @@ import { UserRoomListComponent } from './user-room-list/user-room-list.component
 import { UserRoomBookingComponent } from './user-room-booking/user-room-booking.component';
 import { EmployeeUserRoomBookingComponent } from './employee-user-room-booking/employee-user-room-booking.component';
 
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatFormFieldModule, MatInputModule, MatRippleModule, MatDialogModule } from '@angular/material';
 import { MatTabsModule } from '@angular/material/tabs';
 
 // import { HttpModule } from '@angular/common/http';
@@ -32,6 +32,10 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
+import { AdminUpdateHotelComponent } from './admin-update-hotel/admin-update-hotel.component';
+import { AdminUpdateEmployeeComponent } from './admin-update-employee/admin-update-employee.component';
+import { AdminUpdateRoomComponent } from './admin-update-room/admin-update-room.component';
+import { AdminUpdateProfileComponent } from './admin-update-profile/admin-update-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +57,11 @@ import { LayoutModule } from '@angular/cdk/layout';
     UserHotelListComponent,
     UserRoomListComponent,
     UserRoomBookingComponent,
-    EmployeeUserRoomBookingComponent
+    EmployeeUserRoomBookingComponent,
+    AdminUpdateHotelComponent,
+    AdminUpdateEmployeeComponent,
+    AdminUpdateRoomComponent,
+    AdminUpdateProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +75,11 @@ import { LayoutModule } from '@angular/cdk/layout';
     RouterModule,
     FormsModule,
     LayoutModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
+    MatDialogModule,
     //  HttpModule,
     HttpClientModule,
     BrowserAnimationsModule,

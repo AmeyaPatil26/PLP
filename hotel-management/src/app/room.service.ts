@@ -8,6 +8,8 @@ export class RoomService {
 
   constructor(private http: HttpClient) { }
 
+
+
   adminRoomList() {
     return this.http.get<any>('http://localhost:8080/getRoomList');
 

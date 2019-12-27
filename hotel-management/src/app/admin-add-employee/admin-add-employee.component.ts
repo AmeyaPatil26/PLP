@@ -14,4 +14,21 @@ export class AdminAddEmployeeComponent implements OnInit {
 
   ngOnInit() {
   }
+
+
+
+
+
+  addNewEmployee(addEmployee: NgForm) {
+    console.log(addEmployee.value);
+    this.employeeService.addEmployee(addEmployee.value).subscribe(res => {
+      console.log('........response', res);
+      this.backendRespnse = res;
+      console.log('.....backendresponse', this.backendRespnse);
+      addEmployee.reset();
+    },
+      err => {
+        console.log(err);
+      });
+  }
 }

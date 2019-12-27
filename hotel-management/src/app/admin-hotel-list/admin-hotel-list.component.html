@@ -8,107 +8,15 @@
         <button class="btn btn-outline-dark" (click)="deleteHotelInfo(h)">
             Delete
         </button>
+
+
         <!-- start -->
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal"
-            (click)="selectHotel(h)">
+
+        <button type="submit" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal"
+            (click)="selectHotel(h)" href="/admin-update-hotel">
             Update
         </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Update Hotel</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                            (click)="hotelService.adminHotelList()">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- form code -->
-                        <!-- <div class="card card-body border border-dark"> -->
-                            <form #updateHotel='ngForm' (ngSubmit)='updateHotelInfo(updateHotel)'>
-                                <input type="hidden" name="hotelId" #hotelId='ngModel'
-                                    [(ngModel)]='selectedHotel.hotelId'>
-                                <div class="form-group">
-                                    <label for="hotelName">
-                                        Hotel Name:
-                                    </label>
-                                    <input type="text" name="hotelName" class="form-control" #hotelName="ngModel"
-                                        ngModel [(ngModel)]="selectedHotel.hotelName">
-                                </div>
 
-                                <div class="form-group">
-                                    <label for="licenceNumber">
-                                        licenceNumber:
-                                    </label>
-                                    <input type="text" name="licenceNumber" class="form-control"
-                                        #licenceNumber="ngModel" ngModel [(ngModel)]="selectedHotel.licenceNumber"
-                                        pattern="^(H)[0-9]{8}$">
-                                    <div *ngIf='licenceNumber.touched && licenceNumber.invalid'>
-                                        <p class="alert alert-danger" *ngIf='licenceNumber.errors.pattern'>
-                                            please enter valid category.. category not cantain numbers
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="hotelAddress">
-                                        hotelAddress:
-                                    </label>
-                                    <input type="text" name="hotelAddress" class="form-control" #hotelAddress="ngModel"
-                                        ngModel [(ngModel)]="selectedHotel.hotelAddress">
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="hotelContactNumber">
-                                        hotelContactNumber:
-                                    </label>
-                                    <input type="text" name="hotelContactNumber" class="form-control"
-                                        #hotelContactNumber="ngModel" ngModel
-                                        [(ngModel)]="selectedHotel.hotelContactNumber" pattern="[7-9]{1}[0-9]{9}">
-                                    <div *ngIf='hotelContactNumber.touched && hotelContactNumber.invalid'>
-
-                                        <p class="alert alert-danger" *ngIf='hotelContactNumber.errors.pattern'>
-                                            please enter valid Quantity
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="productPrice">
-                                        hotelImageURL:
-                                    </label>
-                                    <input type="text" name="hotelImageURL" class="form-control"
-                                        #hotelImageURL="ngModel" ngModel 
-                                        [(ngModel)]="selectedHotel.hotelImageURL">
-
-                                </div>
-
-
-                                <div class="btn-group float-right">
-                                    <button class="btn btn-outline-dark" type="reset">
-                                        Reset
-                                    </button>
-                                    &nbsp;&nbsp;
-                                    <button class="btn btn-outline-dark" type="submit"
-                                        [disabled]='updateHotel.invalid'>
-                                        Update
-                                    </button>
-                                </div>
-
-                            </form>
-                        <!-- </div> -->
-                        <!-- form code -->
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- end  -->
     </div>
 </div>

@@ -25,34 +25,26 @@ export class VerticalHeaderComponent implements OnInit {
   }
 
   isAdmin() {
-    const user = JSON.parse(localStorage.getItem('token'));
-    console.log(user.adminEmployeeUserBean);
-    // tslint:disable-next-line: one-variable-per-declaration
-    const user1 = user.adminEmployeeUserBean.type;
-    console.log(user1);
-    if (user1 && user1 === 'Admin') {
+    const user: LoginRegister = JSON.parse(localStorage.getItem('token'));
+    if (user && user.type === 'Admin') {
       return true;
     } else {
       return false;
     }
   }
 
+
   isUser() {
-    const user = JSON.parse(localStorage.getItem('token'));
-    console.log(user);
-    const user1 = user.adminEmployeeUserBean.type;
-    console.log(user1);
-    if (user1 && user1.type === 'User') {
-      console.log('in');
+    const user: LoginRegister = JSON.parse(localStorage.getItem('token'));
+    if (user && user.type === 'User') {
       return true;
     } else {
       return false;
     }
   }
   isEmployee() {
-    const user = JSON.parse(localStorage.getItem('token'));
-    const user1 = user.adminEmployeeUserBean.type;
-    if (user1 && user1.type === 'Employee') {
+    const user: LoginRegister = JSON.parse(localStorage.getItem('token'));
+    if (user && user.type === 'Employee') {
       return true;
     } else {
       return false;
@@ -66,7 +58,6 @@ export class VerticalHeaderComponent implements OnInit {
       return false;
     }
   }
-
   ngOnInit() {
   }
 

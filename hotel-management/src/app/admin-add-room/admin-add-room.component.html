@@ -1,30 +1,43 @@
-<div class="col-md-4 offset-md-4 mt-5 card card-body border border-dark">
+<h4>Add Room</h4>
+<div class="col-md-4 offset-md-4 card card-body border border-dark">
     <form #addRoom='ngForm' (ngSubmit)='addNewRoom(addRoom)'>
         <!--    -->
+        <div class="text-danger" *ngIf='backendRespnse'>
+            {{backendRespnse.description}}
+        </div>
+
         <div class="form-group">
             <label for="licenceNumber">
-                licenceNumber:
+                Licence Number:
             </label>
             <input type="text" name="licenceNumber" class="form-control" #licenceNumber="ngModel"
                 pattern="^(H)[0-9]{8}$" ngModel required>
             <div *ngIf='licenceNumber.touched && licenceNumber.invalid'>
-                <p class="alert alert-danger" *ngIf='licenceNumber.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='licenceNumber.errors.required'>
+                    *This field is mandatory
                 </p>
-                <p class="alert alert-danger" *ngIf='licenceNumber.errors.pattern'>
-                    please enter valid licenceNumber
+                <p class="text-danger" *ngIf='licenceNumber.errors.pattern'>
+                    *Invalid Licence Number!!! <br>It should contain 'H' and 8 digit number
                 </p>
             </div>
         </div>
 
         <div class="form-group">
             <label for="roomCount">
-                roomCount:
+                Room Count:
             </label>
-            <input type="number" name="roomCount" class="form-control" #roomCount="ngModel" ngModel required>
+            <input type="text" name="roomCount" class="form-control" #roomCount="ngModel" ngModel 
+            required pattern="^[1-9]\d*$" maxlength="50">
+            <!-- a digit in range 1 to 9 followed by zero -->
             <div *ngIf='roomCount.touched && roomCount.invalid'>
-                <p class="alert alert-danger" *ngIf='roomCount.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='roomCount.errors.required'>
+                    *This field is mandatory
+                </p>
+                <p class="text-danger" *ngIf='roomCount.errors.pattern'>
+                    *This field accept only numbers
+                </p>
+                <p class="text-danger" *ngIf='roomCount.errors.maxlength'>
+                    *This field maxlngth is 50
                 </p>
 
             </div>
@@ -33,14 +46,14 @@
 
 
         <div class="form-group">
-            <label for="roomType">*Room Type:</label>
+            <label for="roomType">Room Type:</label>
             <select name="roomType" class="form-control" #roomType="ngModel" ngModel required>
                 <option value="AC">AC</option>
                 <option value="Non AC">Non AC</option>
             </select>
             <div *ngIf='roomType.touched && roomType.invalid'>
-                <p class="alert alert-danger" *ngIf='roomType.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='roomType.errors.required'>
+                    *This field is mandatory
                 </p>
 
             </div>
@@ -49,14 +62,14 @@
 
 
         <div class="form-group">
-            <label for="roomCapacity">capacity:</label>
+            <label for="roomCapacity">Capacity:</label>
             <select name="roomCapacity" class="form-control" #roomCapacity="ngModel" ngModel required>
                 <option value="singleBed">Single Bed</option>
                 <option value="Double bed">Double Bed</option>
             </select>
             <div *ngIf='roomCapacity.touched && roomCapacity.invalid'>
-                <p class="alert alert-danger" *ngIf='roomCapacity.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='roomCapacity.errors.required'>
+                    *This field is mandatory
                 </p>
 
             </div>
@@ -64,12 +77,17 @@
 
         <div class="form-group">
             <label for="roomAmount">
-                roomAmount:
+                Room Amount:
             </label>
-            <input type="number" name="roomAmount" class="form-control" #roomAmount="ngModel" ngModel required>
+            <input type="text" name="roomAmount" class="form-control" #roomAmount="ngModel" ngModel required
+            pattern="^[1-9]\d*(\.\d+)?$">
+            <!-- allow number with optional decimal point followed by zero -->
             <div *ngIf='roomAmount.touched && roomAmount.invalid'>
-                <p class="alert alert-danger" *ngIf='roomAmount.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='roomAmount.errors.required'>
+                    *This field is mandatory
+                </p>
+                <p class="text-danger" *ngIf='roomAmount.errors.pattern'>
+                    *This field contains only number
                 </p>
 
             </div>
@@ -78,14 +96,14 @@
 
 
         <div class="form-group">
-            <label for="roomStatus">roomStatus:</label>
+            <label for="roomStatus">Room Status:</label>
             <select name="roomStatus" class="form-control" #roomStatus="ngModel" ngModel required>
               <option value="Available">Available</option>
               <option value="Not Available">Not Available</option>
             </select>
             <div *ngIf='roomStatus.touched && roomStatus.invalid'>
-                <p class="alert alert-danger" *ngIf='roomStatus.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='roomStatus.errors.required'>
+                    *This field is mandatory
                 </p>
 
             </div>
@@ -93,14 +111,18 @@
 
         <div class="form-group">
             <label for="roomImageURL">
-                roomImageURL:
+                Room ImageURL:
             </label>
-            <input type="text" name="roomImageURL" class="form-control" #roomImageURL="ngModel" ngModel required>
+            <input type="text" name="roomImageURL" class="form-control" #roomImageURL="ngModel" ngModel 
+            required>
+            <!-- pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)" -->
             <div *ngIf='roomImageURL.touched && roomImageURL.invalid'>
-                <p class="alert alert-danger" *ngIf='roomImageURL.errors.required'>
-                    This field is mandatory
+                <p class="text-danger" *ngIf='roomImageURL.errors.required'>
+                    *This field is mandatory
                 </p>
-
+                <!-- <p class="text-danger" *ngIf='roomImageURL.errors.pattern'>
+                    *This field contain only Image URL
+                </p> -->
             </div>
         </div>
 
@@ -116,9 +138,6 @@
             </button>
         </div>
 
-        <div class="alert alert-danger" *ngIf='backendRespnse'>
-            {{backendRespnse.description}}
-        </div>
-
+        
     </form>
 </div>

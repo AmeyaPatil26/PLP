@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginRegister } from './login-register';
+import { User } from './user-information';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
   constructor(private http: HttpClient) { }
-  api = 'http://localhost:8080/';
+
 
   register(data) {
     console.log('register', data);
@@ -17,14 +18,16 @@ export class AuthService {
     );
   }
 
-  login(data): Observable<any> {
+  login(data): Observable<LoginRegister> {
     console.log('service', data);
-    return this.http.post<any>(`${this.api}adminEmployeeUserLogin?email=${data.email}&password=${data.password}`, data );
-    // return this.http.post(`${this.api}adminEmployeeUserLogin?email=${credentials.email}&password=${credentials.password}`, credentials);
+    return this.http.post<LoginRegister>(
+      'http://localhost:8080/adminEmployeeUserLogin', data
+    );
   }
 
+  
   getProfileData(data): Observable<LoginRegister> {
-    return this.http.post<LoginRegister>('http://localhost:8080/adminUserEmployeeProfile', data);
+    return this.http.post<LoginRegister>('http://localhost:8080/adminUserEmployeeProfile',data);
   }
   updateProfileForm(data) {
     console.log(data);
